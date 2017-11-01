@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Data;
 using Ivi.Visa;
 using Ivi.Visa.FormattedIO;
 using LogRecord;
@@ -14,6 +15,8 @@ namespace lrcmeteer
             InitializeComponent();
         }
 
+       // private DataTable dt = new DataTable();          
+ 
         //change widget state
         private void widgetStateChange(RunState type)
         {
@@ -92,6 +95,7 @@ namespace lrcmeteer
                     //get the data
                     FetchResult = sendCommand("Fetch?");
                     logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
+
                     //deal the data
 
                     //plotx[i] = startvoltage + i * stepvoltage;
@@ -155,6 +159,7 @@ namespace lrcmeteer
             catch (NativeVisaException visaException)
             {
                 Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
+                MessageBox.Show("Please check GPIB conncetion. GPIB port of the instrument should be set as GPIB0::25", "Connection Error");
                 return;
             }
         }
@@ -283,6 +288,7 @@ namespace lrcmeteer
             {
                 sendCommand("Func:IMP CSRS");
             }
+            //Initialize datagridview and insert comment row
 
             //start measure
             sendCommand("BIAS:STAT 1");
@@ -394,6 +400,44 @@ namespace lrcmeteer
         private void tmrGf_Tick(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            
+            openGPIB();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnTest1_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Voltage(V)" ,typeof(System.Int32));
+            dt.Rows.Add(1);
+            dgvData.DataSource = dt;
+           // DataGridViewTextBoxColumn c = new DataGridViewTextBoxColumn();
+           // c.DataPropertyName = "c";
+            //c.HeaderText = "c";
+           // c.Name = "ccolumn";
+           // string[] row = { "a", "b", "c" };
+            //dgvData.Columns.Add(c);
+           // dgvData.Rows.Add(row);
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dgvData.DataSource = dt;
+        }
+
+        private void btnTest2_Click(object sender, EventArgs e)
+        {
+            string value = dgvData.Rows[0].Cells[0].Value.ToString();
+            Shell.WriteLine(value);
         }
     }
 }

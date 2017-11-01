@@ -142,7 +142,10 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.btnTest1 = new System.Windows.Forms.Button();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnTest2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -152,7 +155,8 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxCf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxGf)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -1211,6 +1215,7 @@
             this.btnConnect.TabIndex = 63;
             this.btnConnect.Text = "Connect Instruments";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // button1
             // 
@@ -1229,21 +1234,49 @@
             this.btnClear.TabIndex = 65;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // dataGridView1
+            // dgvData
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(181, 441);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(555, 211);
-            this.dataGridView1.TabIndex = 66;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Location = new System.Drawing.Point(181, 441);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.Size = new System.Drawing.Size(555, 211);
+            this.dgvData.TabIndex = 66;
+            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // btnTest1
+            // 
+            this.btnTest1.Location = new System.Drawing.Point(526, 76);
+            this.btnTest1.Name = "btnTest1";
+            this.btnTest1.Size = new System.Drawing.Size(75, 23);
+            this.btnTest1.TabIndex = 67;
+            this.btnTest1.Text = "Test1";
+            this.btnTest1.UseVisualStyleBackColor = true;
+            this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
+            // 
+            // btnTest2
+            // 
+            this.btnTest2.Location = new System.Drawing.Point(607, 76);
+            this.btnTest2.Name = "btnTest2";
+            this.btnTest2.Size = new System.Drawing.Size(75, 23);
+            this.btnTest2.TabIndex = 68;
+            this.btnTest2.Text = "Test2";
+            this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 964);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnTest2);
+            this.Controls.Add(this.btnTest1);
+            this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConnect);
@@ -1307,7 +1340,8 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxCf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxGf)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1428,7 +1462,10 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource form1BindingSource;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.Button btnTest1;
+        private System.Windows.Forms.Button btnTest2;
     }
 }
 

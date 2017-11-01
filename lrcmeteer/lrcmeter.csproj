@@ -95,6 +95,13 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Form1.RunState.datasource" />
+    <None Include="Properties\DataSources\LogRecord.LogClass.datasource" />
+    <None Include="Properties\DataSources\lrcmeteer.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\lrcmeteer.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Shell.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
