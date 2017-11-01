@@ -1,0 +1,12 @@
+E:\Projects\lrcmeteer\lrcmeteer\bin\Debug\lrcmeteer.exe
+E:\Projects\lrcmeteer\lrcmeteer\bin\Debug\lrcmeteer.pdb
+E:\Projects\lrcmeteer\lrcmeteer\obj\Debug\lrcmeteer.csprojResolveAssemblyReference.cache
+E:\Projects\lrcmeteer\lrcmeteer\obj\Debug\lrcmeteer.Form1.resources
+E:\Projects\lrcmeteer\lrcmeteer\obj\Debug\lrcmeteer.Properties.Resources.resources
+E:\Projects\lrcmeteer\lrcmeteer\obj\Debug\lrcmeteer.csproj.GenerateResource.Cache
+E:\Projects\lrcmeteer\lrcmeteer\obj\Debug\lrcmeteer.exe
+E:\Projects\lrcmeteer\lrcmeteer\obj\Debug\lrcmeteer.pdb
+E:\Projects\lrcmeteer\lrcmeteer\bin\Debug\Ivi.Visa.dll
+E:\Projects\lrcmeteer\lrcmeteer\bin\Debug\Ivi.Visa.xml
+E:\Projects\lrcmeteer\lrcmeteer\bin\Debug\lrcmeteer.exe.config
+E:\Projects\lrcmeteer\lrcmeteer\bin\Debug\System.Windows.Forms.DataVisualization.dll
