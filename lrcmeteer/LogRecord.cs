@@ -15,7 +15,7 @@ namespace LogRecord
         {
             /**/
             ///指定日志文件的目录
-            string fname = Directory.GetCurrentDirectory() + "\\"+ DateTime.Now + "Data.txt";
+            string fname = Directory.GetCurrentDirectory() + "\\" + DateTime.Now.ToString("YYMMDDHHIISS") + "Data.txt";
             /**/
             ///定义文件信息对象
 

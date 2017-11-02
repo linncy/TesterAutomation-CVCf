@@ -14,9 +14,10 @@ namespace lrcmeteer
         {
             InitializeComponent();
         }
+        // Initialize two datatable
+        DataTable dtCV = new DataTable();
+        DataTable dtCF = new DataTable();         
 
-       // private DataTable dt = new DataTable();          
- 
         //change widget state
         private void widgetStateChange(RunState type)
         {
@@ -65,7 +66,7 @@ namespace lrcmeteer
         RunState state = RunState.stop;
 
         //get data save data and plot data
-        LogClass logfile = new LogClass();
+      //  LogClass logfile = new LogClass();
         private void RunCV(object sender, EventArgs e)
         {
             tmrCV.Enabled = false;
@@ -94,7 +95,8 @@ namespace lrcmeteer
 
                     //get the data
                     FetchResult = sendCommand("Fetch?");
-                    logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
+                    dtCV.Rows.Add((startvoltage + i * stepvoltage), Convert.ToDouble(FetchResult[0]));
+                //    logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
 
                     //deal the data
 
@@ -111,6 +113,7 @@ namespace lrcmeteer
                     state = RunState.stop;
                     widgetStateChange(state);
                     sendCommand("BIAS:STAT 0");
+                    caculateCV(dtCV,dgvData);
                     session.Dispose();
                 }
 
@@ -155,6 +158,7 @@ namespace lrcmeteer
             {
                 session = GlobalResourceManager.Open(VISA_ADDRESS,AccessModes.None,50000) as IMessageBasedSession;
                 formattedIO = new MessageBasedFormattedIO(session);
+                MessageBox.Show("The instrument has been successfully connected on GPIB0::25", "Success");
             }
             catch (NativeVisaException visaException)
             {
@@ -275,6 +279,10 @@ namespace lrcmeteer
 
         private void btnCVstart_Click(object sender, EventArgs e)
         {
+            dtCV = new DataTable();
+            dtCV.Columns.Add("V(V)", typeof(System.Double));
+            dtCV.Columns.Add("C(F)", typeof(System.Double));
+            dgvData.DataSource = dtCV;
             //OPEN GPIB & set parameter
             openGPIB();
             sendCommand("APER");
@@ -404,7 +412,6 @@ namespace lrcmeteer
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            
             openGPIB();
         }
 
@@ -415,10 +422,13 @@ namespace lrcmeteer
 
         private void btnTest1_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Voltage(V)" ,typeof(System.Int32));
-            dt.Rows.Add(1);
-            dgvData.DataSource = dt;
+            dtCV.Columns.Add("Voltage(V)" ,typeof(System.Double));
+            dtCV.Columns.Add("C(F)", typeof(System.Double));
+            dtCV.Rows.Add(-2, 2.14E-10);
+            dtCV.Rows.Add(-1.95, 2.13E-10);
+            dtCV.Rows.Add(-1.9, 2.23E-10);
+            dgvData.DataSource = dtCV;
+            Shell.WriteLine(Convert.ToString(dtCV.Rows.Count));
            // DataGridViewTextBoxColumn c = new DataGridViewTextBoxColumn();
            // c.DataPropertyName = "c";
             //c.HeaderText = "c";
@@ -430,14 +440,29 @@ namespace lrcmeteer
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dgvData.DataSource = dt;
+            dtCV = new DataTable();
+            dtCF = new DataTable();
+            dgvData.DataSource = dtCV;
         }
 
         private void btnTest2_Click(object sender, EventArgs e)
         {
-            string value = dgvData.Rows[0].Cells[0].Value.ToString();
-            Shell.WriteLine(value);
+            caculateCV(dtCV, dgvData);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            dataGridViewToCSV(dgvData);
+        }
+
+        private void txtCVPermittivity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

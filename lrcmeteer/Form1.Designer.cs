@@ -137,15 +137,13 @@
             this.label68 = new System.Windows.Forms.Label();
             this.tmrCV = new System.Windows.Forms.Timer(this.components);
             this.tmrGf = new System.Windows.Forms.Timer(this.components);
-            this.txtSave = new System.Windows.Forms.TextBox();
-            this.label69 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.btnTest1 = new System.Windows.Forms.Button();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnTest2 = new System.Windows.Forms.Button();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -224,6 +222,7 @@
             this.label16.Size = new System.Drawing.Size(12, 7);
             this.label16.TabIndex = 23;
             this.label16.Text = "-2";
+            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // label15
             // 
@@ -294,6 +293,7 @@
             this.txtCVPermittivity.Name = "txtCVPermittivity";
             this.txtCVPermittivity.Size = new System.Drawing.Size(81, 20);
             this.txtCVPermittivity.TabIndex = 15;
+            this.txtCVPermittivity.TextChanged += new System.EventHandler(this.txtCVPermittivity_TextChanged);
             // 
             // label8
             // 
@@ -1190,23 +1190,6 @@
             // 
             this.tmrGf.Tick += new System.EventHandler(this.tmrGf_Tick);
             // 
-            // txtSave
-            // 
-            this.txtSave.Location = new System.Drawing.Point(601, 49);
-            this.txtSave.Name = "txtSave";
-            this.txtSave.Size = new System.Drawing.Size(81, 20);
-            this.txtSave.TabIndex = 26;
-            this.txtSave.TextChanged += new System.EventHandler(this.txtSave_TextChanged);
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(523, 52);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(77, 13);
-            this.label69.TabIndex = 26;
-            this.label69.Text = "Save Filename";
-            // 
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(526, 14);
@@ -1217,18 +1200,19 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // button1
+            // btnSave
             // 
-            this.button1.Location = new System.Drawing.Point(688, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSave.Location = new System.Drawing.Point(526, 120);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 64;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(688, 122);
+            this.btnClear.Location = new System.Drawing.Point(688, 120);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 65;
@@ -1247,7 +1231,7 @@
             // 
             // btnTest1
             // 
-            this.btnTest1.Location = new System.Drawing.Point(526, 76);
+            this.btnTest1.Location = new System.Drawing.Point(526, 43);
             this.btnTest1.Name = "btnTest1";
             this.btnTest1.Size = new System.Drawing.Size(75, 23);
             this.btnTest1.TabIndex = 67;
@@ -1255,19 +1239,19 @@
             this.btnTest1.UseVisualStyleBackColor = true;
             this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
-            // 
             // btnTest2
             // 
-            this.btnTest2.Location = new System.Drawing.Point(607, 76);
+            this.btnTest2.Location = new System.Drawing.Point(603, 43);
             this.btnTest2.Name = "btnTest2";
             this.btnTest2.Size = new System.Drawing.Size(75, 23);
             this.btnTest2.TabIndex = 68;
             this.btnTest2.Text = "Test2";
             this.btnTest2.UseVisualStyleBackColor = true;
             this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
             // 
             // Form1
             // 
@@ -1278,10 +1262,8 @@
             this.Controls.Add(this.btnTest1);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.label69);
-            this.Controls.Add(this.txtSave);
             this.Controls.Add(this.label66);
             this.Controls.Add(this.label67);
             this.Controls.Add(this.label68);
@@ -1457,10 +1439,8 @@
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Timer tmrCV;
         private System.Windows.Forms.Timer tmrGf;
-        private System.Windows.Forms.TextBox txtSave;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.DataGridView dgvData;
