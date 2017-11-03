@@ -4,6 +4,8 @@ using System.Data;
 using Ivi.Visa;
 using Ivi.Visa.FormattedIO;
 using LogRecord;
+using System.Collections.Generic;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace lrcmeteer
 {
@@ -13,10 +15,14 @@ namespace lrcmeteer
         public Form1()
         {
             InitializeComponent();
+            
         }
         // Initialize two datatable
         DataTable dtCV = new DataTable();
-        DataTable dtCF = new DataTable();         
+        DataTable dtCF = new DataTable();
+        List<double> listCVx;
+        List<double> listCVy;
+        List<double> listCVy_2;
 
         //change widget state
         private void widgetStateChange(RunState type)
@@ -96,7 +102,12 @@ namespace lrcmeteer
                     //get the data
                     FetchResult = sendCommand("Fetch?");
                     dtCV.Rows.Add((startvoltage + i * stepvoltage), Convert.ToDouble(FetchResult[0]));
-                //    logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
+                    listCVx.Add((startvoltage + i * stepvoltage));
+                    listCVy.Add(Convert.ToDouble(FetchResult[0]));
+                    listCVy_2.Add(1 / (Convert.ToDouble(FetchResult[0]) * Convert.ToDouble(FetchResult[0])));
+                    plot(chartCV, "C-V",listCVx, listCVy);
+                    plot(chartCV_2,"1/C²-V", listCVx, listCVy_2);
+                    //    logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
 
                     //deal the data
 
@@ -283,6 +294,9 @@ namespace lrcmeteer
             dtCV.Columns.Add("V(V)", typeof(System.Double));
             dtCV.Columns.Add("C(F)", typeof(System.Double));
             dgvData.DataSource = dtCV;
+            listCVx = new List<double>();
+            listCVy = new List<double>();
+            listCVy_2 = new List<double>();
             //OPEN GPIB & set parameter
             openGPIB();
             sendCommand("APER");
@@ -443,11 +457,33 @@ namespace lrcmeteer
             dtCV = new DataTable();
             dtCF = new DataTable();
             dgvData.DataSource = dtCV;
+            listCVx = new List<double>();
+            listCVy = new List<double>();
+            listCVy_2 = new List<double>();
+            plot(chartCV, "C-V", listCVx, listCVy);
+            plot(chartCV_2, "1/C²-V", listCVx, listCVy_2);
         }
 
         private void btnTest2_Click(object sender, EventArgs e)
         {
             caculateCV(dtCV, dgvData);
+            List<double> listX = new List<double>();
+            List<double> listY = new List<double>();
+            for(i=0;i<40;i++)
+            {
+                listX.Add(-1 + 0.05 * i);
+                listY.Add(2.14E-11 * i);
+            }
+            plot(chartCV_2, "1/C²-V", listX, listY);
+            
+        }
+        private void plot(Chart chart, string tag, List<double> listx, List<double> listy)
+        {
+            chart.Series.Clear();
+            Series series = new Series(tag);
+            series.ChartType = SeriesChartType.Spline;
+            series.Points.DataBindXY(listx, listy);
+            chart.Series.Add(series);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -463,6 +499,21 @@ namespace lrcmeteer
         private void label16_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void chartCV_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label40_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            caculateCV(dtCV, dgvData);
         }
     }
 }

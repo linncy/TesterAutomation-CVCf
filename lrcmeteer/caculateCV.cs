@@ -17,8 +17,16 @@ namespace lrcmeteer
                 MessageBox.Show("No data to caculate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-            datatable.Columns.Add("w(μm)", typeof(System.Double));
-            datatable.Columns.Add("NA(cm-3)", typeof(System.Double));
+            if(txtCVArea.Text==""|| txtCVPermittivity.Text == "")
+            {
+                MessageBox.Show("Program cannot perform caculation, since Area or Permittivity was not entered. To perform caculation again, please check Area and Permittivity, and click the Caculate button.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            if (!(datatable.Columns.Contains("w(μm)") || datatable.Columns.Contains("NA(cm-3)")))
+            {
+                datatable.Columns.Add("w(μm)", typeof(System.Double));
+                datatable.Columns.Add("NA(cm-3)", typeof(System.Double));
+            }
             int lenRow = datatable.Rows.Count;
             double epsilonS = Convert.ToDouble(txtCVPermittivity.Text);
             double epsilon0 = 8.854E-12;

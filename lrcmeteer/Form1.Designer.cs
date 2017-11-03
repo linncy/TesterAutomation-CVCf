@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCVstop = new System.Windows.Forms.Button();
             this.btnCVstart = new System.Windows.Forms.Button();
@@ -66,8 +72,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbSeries = new System.Windows.Forms.RadioButton();
             this.rbParallel = new System.Windows.Forms.RadioButton();
-            this.picboxCV = new System.Windows.Forms.PictureBox();
-            this.picboxC2V = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label38 = new System.Windows.Forms.Label();
             this.txtGBGE = new System.Windows.Forms.TextBox();
@@ -105,12 +109,6 @@
             this.picboxCf = new System.Windows.Forms.PictureBox();
             this.picboxGf = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -129,12 +127,6 @@
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
             this.tmrCV = new System.Windows.Forms.Timer(this.components);
             this.tmrGf = new System.Windows.Forms.Timer(this.components);
             this.btnConnect = new System.Windows.Forms.Button();
@@ -143,22 +135,32 @@
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.btnTest1 = new System.Windows.Forms.Button();
             this.btnTest2 = new System.Windows.Forms.Button();
+            this.chartCV = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartCV_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.btnCalculate = new System.Windows.Forms.Button();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxCV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxC2V)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxCf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxGf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCV_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCalculate);
             this.groupBox1.Controls.Add(this.btnCVstop);
             this.groupBox1.Controls.Add(this.btnCVstart);
             this.groupBox1.Controls.Add(this.label16);
@@ -187,7 +189,7 @@
             this.groupBox1.Controls.Add(this.txtCVStartVoltage);
             this.groupBox1.Location = new System.Drawing.Point(12, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(135, 430);
+            this.groupBox1.Size = new System.Drawing.Size(135, 457);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "C-V";
@@ -195,21 +197,21 @@
             // btnCVstop
             // 
             this.btnCVstop.Enabled = false;
-            this.btnCVstop.Location = new System.Drawing.Point(9, 395);
+            this.btnCVstop.Location = new System.Drawing.Point(10, 428);
             this.btnCVstop.Name = "btnCVstop";
             this.btnCVstop.Size = new System.Drawing.Size(81, 25);
             this.btnCVstop.TabIndex = 25;
-            this.btnCVstop.Text = "stop";
+            this.btnCVstop.Text = "Stop";
             this.btnCVstop.UseVisualStyleBackColor = true;
             this.btnCVstop.Click += new System.EventHandler(this.btnCVstop_Click);
             // 
             // btnCVstart
             // 
-            this.btnCVstart.Location = new System.Drawing.Point(9, 364);
+            this.btnCVstart.Location = new System.Drawing.Point(10, 397);
             this.btnCVstart.Name = "btnCVstart";
             this.btnCVstart.Size = new System.Drawing.Size(81, 25);
             this.btnCVstart.TabIndex = 24;
-            this.btnCVstart.Text = "start";
+            this.btnCVstart.Text = "Start";
             this.btnCVstart.UseVisualStyleBackColor = true;
             this.btnCVstart.Click += new System.EventHandler(this.btnCVstart_Click);
             // 
@@ -300,9 +302,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 319);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 14;
-            this.label8.Text = "permittivity";
+            this.label8.Text = "Permittivity";
             // 
             // txtCVArea
             // 
@@ -333,9 +335,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(7, 234);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 13);
+            this.label6.Size = new System.Drawing.Size(110, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Sweep rate(DC-Bias)";
+            this.label6.Text = "Sweep Rate(DC-Bias)";
             // 
             // txtCVOscVoltage
             // 
@@ -368,9 +370,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(7, 150);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "AC frequency";
+            this.label4.Text = "AC Frequency";
             // 
             // txtCVStepVoltage
             // 
@@ -385,9 +387,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "step voltage";
+            this.label3.Text = "Step Voltage";
             // 
             // txtCVStopVoltage
             // 
@@ -402,18 +404,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "stop voltage";
+            this.label2.Text = "Stop Voltage";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "start voltage";
+            this.label1.Text = "Start Voltage";
             // 
             // txtCVStartVoltage
             // 
@@ -433,7 +435,7 @@
             this.groupBox2.Size = new System.Drawing.Size(238, 120);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "intergration";
+            this.groupBox2.Text = "Intergration";
             // 
             // txtAveRate
             // 
@@ -462,7 +464,7 @@
             this.groupBox3.Size = new System.Drawing.Size(131, 90);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "intergration time";
+            this.groupBox3.Text = "Intergration Time";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // rbInterLong
@@ -533,26 +535,6 @@
             this.rbParallel.Text = "Parallel";
             this.rbParallel.UseVisualStyleBackColor = true;
             // 
-            // picboxCV
-            // 
-            this.picboxCV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picboxCV.Location = new System.Drawing.Point(181, 151);
-            this.picboxCV.Name = "picboxCV";
-            this.picboxCV.Size = new System.Drawing.Size(250, 271);
-            this.picboxCV.TabIndex = 3;
-            this.picboxCV.TabStop = false;
-            this.picboxCV.Click += new System.EventHandler(this.picboxCV_Click);
-            // 
-            // picboxC2V
-            // 
-            this.picboxC2V.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picboxC2V.Location = new System.Drawing.Point(485, 151);
-            this.picboxC2V.Name = "picboxC2V";
-            this.picboxC2V.Size = new System.Drawing.Size(250, 271);
-            this.picboxC2V.TabIndex = 4;
-            this.picboxC2V.TabStop = false;
-            this.picboxC2V.Click += new System.EventHandler(this.picboxC2V_Click);
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label38);
@@ -588,7 +570,7 @@
             this.groupBox5.Controls.Add(this.label32);
             this.groupBox5.Controls.Add(this.label33);
             this.groupBox5.Controls.Add(this.txtGMeasVoltage);
-            this.groupBox5.Location = new System.Drawing.Point(12, 450);
+            this.groupBox5.Location = new System.Drawing.Point(12, 476);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(135, 506);
             this.groupBox5.TabIndex = 26;
@@ -911,60 +893,6 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(179, 425);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(16, 13);
-            this.label39.TabIndex = 30;
-            this.label39.Text = "-2";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(408, 425);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(13, 13);
-            this.label40.TabIndex = 31;
-            this.label40.Text = "2";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(296, 425);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(20, 13);
-            this.label41.TabIndex = 32;
-            this.label41.Text = "[V]";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(600, 425);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(20, 13);
-            this.label42.TabIndex = 35;
-            this.label42.Text = "[V]";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(712, 425);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(13, 13);
-            this.label43.TabIndex = 34;
-            this.label43.Text = "2";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(483, 425);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(16, 13);
-            this.label44.TabIndex = 33;
-            this.label44.Text = "-2";
-            // 
             // label45
             // 
             this.label45.AutoSize = true;
@@ -1127,61 +1055,6 @@
             this.label62.TabIndex = 54;
             this.label62.Text = "0";
             // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(456, 151);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(13, 13);
-            this.label63.TabIndex = 59;
-            this.label63.Text = "2";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(456, 285);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(13, 13);
-            this.label64.TabIndex = 58;
-            this.label64.Text = "1";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(456, 408);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(13, 13);
-            this.label65.TabIndex = 57;
-            this.label65.Text = "0";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(150, 151);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(13, 13);
-            this.label66.TabIndex = 62;
-            this.label66.Text = "2";
-            this.label66.Click += new System.EventHandler(this.label66_Click);
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(150, 285);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(13, 13);
-            this.label67.TabIndex = 61;
-            this.label67.Text = "1";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(150, 408);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(13, 13);
-            this.label68.TabIndex = 60;
-            this.label68.Text = "0";
-            // 
             // tmrCV
             // 
             this.tmrCV.Interval = 1000;
@@ -1202,7 +1075,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(526, 120);
+            this.btnSave.Location = new System.Drawing.Point(526, 94);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 64;
@@ -1212,7 +1085,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(688, 120);
+            this.btnClear.Location = new System.Drawing.Point(688, 43);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 65;
@@ -1249,6 +1122,110 @@
             this.btnTest2.UseVisualStyleBackColor = true;
             this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
+            // chartCV
+            // 
+            this.chartCV.BackColor = System.Drawing.Color.Transparent;
+            this.chartCV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            chartArea1.Name = "ChartArea1";
+            this.chartCV.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartCV.Legends.Add(legend1);
+            this.chartCV.Location = new System.Drawing.Point(179, 151);
+            this.chartCV.Name = "chartCV";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCV.Series.Add(series1);
+            this.chartCV.Size = new System.Drawing.Size(280, 270);
+            this.chartCV.TabIndex = 69;
+            this.chartCV.Text = "C-V";
+            this.chartCV.Click += new System.EventHandler(this.chartCV_Click);
+            // 
+            // chartCV_2
+            // 
+            this.chartCV_2.BackColor = System.Drawing.Color.Transparent;
+            this.chartCV_2.BackImageTransparentColor = System.Drawing.Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            this.chartCV_2.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartCV_2.Legends.Add(legend2);
+            this.chartCV_2.Location = new System.Drawing.Point(483, 151);
+            this.chartCV_2.Name = "chartCV_2";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartCV_2.Series.Add(series2);
+            this.chartCV_2.Size = new System.Drawing.Size(280, 270);
+            this.chartCV_2.TabIndex = 70;
+            this.chartCV_2.Text = "chart1";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(0, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(41, 13);
+            this.label39.TabIndex = 71;
+            this.label39.Text = "label39";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(181, 139);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(24, 13);
+            this.label40.TabIndex = 72;
+            this.label40.Text = "C-V";
+            this.label40.Click += new System.EventHandler(this.label40_Click);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(486, 138);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(38, 13);
+            this.label41.TabIndex = 73;
+            this.label41.Text = "1/C²-V";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(309, 420);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(14, 13);
+            this.label42.TabIndex = 74;
+            this.label42.Text = "V";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(627, 420);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(14, 13);
+            this.label43.TabIndex = 75;
+            this.label43.Text = "V";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(162, 151);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(13, 13);
+            this.label44.TabIndex = 76;
+            this.label44.Text = "F";
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Location = new System.Drawing.Point(10, 368);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(81, 23);
+            this.btnCalculate.TabIndex = 77;
+            this.btnCalculate.Text = "Caculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
@@ -1257,19 +1234,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 964);
+            this.ClientSize = new System.Drawing.Size(769, 984);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.label42);
+            this.Controls.Add(this.label41);
+            this.Controls.Add(this.label40);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.chartCV_2);
+            this.Controls.Add(this.chartCV);
             this.Controls.Add(this.btnTest2);
             this.Controls.Add(this.btnTest1);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.label66);
-            this.Controls.Add(this.label67);
-            this.Controls.Add(this.label68);
-            this.Controls.Add(this.label63);
-            this.Controls.Add(this.label64);
-            this.Controls.Add(this.label65);
             this.Controls.Add(this.label60);
             this.Controls.Add(this.label61);
             this.Controls.Add(this.label62);
@@ -1288,25 +1267,17 @@
             this.Controls.Add(this.label45);
             this.Controls.Add(this.label46);
             this.Controls.Add(this.label47);
-            this.Controls.Add(this.label42);
-            this.Controls.Add(this.label43);
-            this.Controls.Add(this.label44);
-            this.Controls.Add(this.label41);
-            this.Controls.Add(this.label40);
-            this.Controls.Add(this.label39);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.picboxGf);
             this.Controls.Add(this.picboxCf);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.picboxC2V);
-            this.Controls.Add(this.picboxCV);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "C-V/C-f Sweep";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1316,13 +1287,13 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxCV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxC2V)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxCf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxGf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCV_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1368,8 +1339,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RadioButton rbSeries;
         private System.Windows.Forms.RadioButton rbParallel;
-        private System.Windows.Forms.PictureBox picboxCV;
-        private System.Windows.Forms.PictureBox picboxC2V;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox txtGBGE;
@@ -1407,12 +1376,6 @@
         private System.Windows.Forms.PictureBox picboxCf;
         private System.Windows.Forms.PictureBox picboxGf;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label47;
@@ -1431,12 +1394,6 @@
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Timer tmrCV;
         private System.Windows.Forms.Timer tmrGf;
         private System.Windows.Forms.Button btnConnect;
@@ -1446,6 +1403,15 @@
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.Button btnTest1;
         private System.Windows.Forms.Button btnTest2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCV;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCV_2;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Button btnCalculate;
     }
 }
 
