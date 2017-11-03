@@ -76,9 +76,6 @@ namespace lrcmeteer
         private void RunCV(object sender, EventArgs e)
         {
             tmrCV.Enabled = false;
-            double[] data = { };
-            double[] plotx = { };
-            double[] ploty = { };
             string CommBias;
             string[] FetchResult;
             double startvoltage, stepvoltage, stopvoltage, idnResponseBiasV;
@@ -163,19 +160,20 @@ namespace lrcmeteer
             return result;
         }
 
-        private void openGPIB()
+        private bool openGPIB()
         {
             try
             {
                 session = GlobalResourceManager.Open(VISA_ADDRESS,AccessModes.None,50000) as IMessageBasedSession;
                 formattedIO = new MessageBasedFormattedIO(session);
-                MessageBox.Show("The instrument has been successfully connected on GPIB0::25", "Success");
+                MessageBox.Show("The instrument has been successfully connected on GPIB0::25", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
             catch (NativeVisaException visaException)
             {
                 Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
-                MessageBox.Show("Please check GPIB conncetion. GPIB port of the instrument should be set as GPIB0::25", "Connection Error");
-                return;
+                MessageBox.Show("Please check GPIB conncetion. GPIB port of the instrument should be set as GPIB0::25", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -298,7 +296,10 @@ namespace lrcmeteer
             listCVy = new List<double>();
             listCVy_2 = new List<double>();
             //OPEN GPIB & set parameter
-            openGPIB();
+            if (!openGPIB())
+            {
+                return;
+            }
             sendCommand("APER");
             sendCommand("Volt");
             sendCommand("Freq");

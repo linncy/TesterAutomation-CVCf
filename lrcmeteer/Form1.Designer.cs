@@ -36,6 +36,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCalculate = new System.Windows.Forms.Button();
             this.btnCVstop = new System.Windows.Forms.Button();
             this.btnCVstart = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -133,18 +134,15 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.btnTest1 = new System.Windows.Forms.Button();
-            this.btnTest2 = new System.Windows.Forms.Button();
             this.chartCV = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartCV_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.btnCalculate = new System.Windows.Forms.Button();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label39 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -193,6 +191,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "C-V";
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Location = new System.Drawing.Point(10, 368);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(81, 23);
+            this.btnCalculate.TabIndex = 77;
+            this.btnCalculate.Text = "Caculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // btnCVstop
             // 
@@ -1085,7 +1093,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(688, 43);
+            this.btnClear.Location = new System.Drawing.Point(682, 95);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 65;
@@ -1101,26 +1109,6 @@
             this.dgvData.Size = new System.Drawing.Size(555, 211);
             this.dgvData.TabIndex = 66;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // btnTest1
-            // 
-            this.btnTest1.Location = new System.Drawing.Point(526, 43);
-            this.btnTest1.Name = "btnTest1";
-            this.btnTest1.Size = new System.Drawing.Size(75, 23);
-            this.btnTest1.TabIndex = 67;
-            this.btnTest1.Text = "Test1";
-            this.btnTest1.UseVisualStyleBackColor = true;
-            this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
-            // 
-            // btnTest2
-            // 
-            this.btnTest2.Location = new System.Drawing.Point(603, 43);
-            this.btnTest2.Name = "btnTest2";
-            this.btnTest2.Size = new System.Drawing.Size(75, 23);
-            this.btnTest2.TabIndex = 68;
-            this.btnTest2.Text = "Test2";
-            this.btnTest2.UseVisualStyleBackColor = true;
-            this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // chartCV
             // 
@@ -1160,15 +1148,6 @@
             this.chartCV_2.Size = new System.Drawing.Size(280, 270);
             this.chartCV_2.TabIndex = 70;
             this.chartCV_2.Text = "chart1";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(0, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(41, 13);
-            this.label39.TabIndex = 71;
-            this.label39.Text = "label39";
             // 
             // label40
             // 
@@ -1216,35 +1195,33 @@
             this.label44.TabIndex = 76;
             this.label44.Text = "F";
             // 
-            // btnCalculate
-            // 
-            this.btnCalculate.Location = new System.Drawing.Point(10, 368);
-            this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(81, 23);
-            this.btnCalculate.TabIndex = 77;
-            this.btnCalculate.Text = "Caculate";
-            this.btnCalculate.UseVisualStyleBackColor = true;
-            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
-            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label39.Location = new System.Drawing.Point(739, 975);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(24, 7);
+            this.label39.TabIndex = 77;
+            this.label39.Text = "CV0.1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 984);
+            this.Controls.Add(this.label39);
             this.Controls.Add(this.label44);
             this.Controls.Add(this.label43);
             this.Controls.Add(this.label42);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.label40);
-            this.Controls.Add(this.label39);
             this.Controls.Add(this.chartCV_2);
             this.Controls.Add(this.chartCV);
-            this.Controls.Add(this.btnTest2);
-            this.Controls.Add(this.btnTest1);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
@@ -1401,17 +1378,15 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.Button btnTest1;
-        private System.Windows.Forms.Button btnTest2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCV;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCV_2;
-        private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label label39;
     }
 }
 
