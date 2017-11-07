@@ -303,6 +303,7 @@
             this.txtCVPermittivity.Name = "txtCVPermittivity";
             this.txtCVPermittivity.Size = new System.Drawing.Size(81, 20);
             this.txtCVPermittivity.TabIndex = 15;
+            this.txtCVPermittivity.Text = "11";
             this.txtCVPermittivity.TextChanged += new System.EventHandler(this.txtCVPermittivity_TextChanged);
             // 
             // label8
@@ -320,6 +321,7 @@
             this.txtCVArea.Name = "txtCVArea";
             this.txtCVArea.Size = new System.Drawing.Size(81, 20);
             this.txtCVArea.TabIndex = 13;
+            this.txtCVArea.Text = "0.24";
             // 
             // label7
             // 
@@ -336,6 +338,7 @@
             this.txtCVSweepRate.Name = "txtCVSweepRate";
             this.txtCVSweepRate.Size = new System.Drawing.Size(81, 20);
             this.txtCVSweepRate.TabIndex = 11;
+            this.txtCVSweepRate.Text = "100";
             this.txtCVSweepRate.TextChanged += new System.EventHandler(this.txtCVSweepRate_TextChanged);
             // 
             // label6
@@ -353,7 +356,7 @@
             this.txtCVOscVoltage.Name = "txtCVOscVoltage";
             this.txtCVOscVoltage.Size = new System.Drawing.Size(81, 20);
             this.txtCVOscVoltage.TabIndex = 9;
-            this.txtCVOscVoltage.Text = "10";
+            this.txtCVOscVoltage.Text = "25";
             this.txtCVOscVoltage.TextChanged += new System.EventHandler(this.txtCVOscVoltage_TextChanged);
             // 
             // label5
@@ -388,7 +391,7 @@
             this.txtCVStepVoltage.Name = "txtCVStepVoltage";
             this.txtCVStepVoltage.Size = new System.Drawing.Size(81, 20);
             this.txtCVStepVoltage.TabIndex = 5;
-            this.txtCVStepVoltage.Text = "0.02";
+            this.txtCVStepVoltage.Text = "0.05";
             // 
             // label3
             // 
@@ -405,7 +408,7 @@
             this.txtCVStopVoltage.Name = "txtCVStopVoltage";
             this.txtCVStopVoltage.Size = new System.Drawing.Size(81, 20);
             this.txtCVStopVoltage.TabIndex = 3;
-            this.txtCVStopVoltage.Text = "2";
+            this.txtCVStopVoltage.Text = "0.5";
             // 
             // label2
             // 
@@ -431,7 +434,8 @@
             this.txtCVStartVoltage.Name = "txtCVStartVoltage";
             this.txtCVStartVoltage.Size = new System.Drawing.Size(81, 20);
             this.txtCVStartVoltage.TabIndex = 0;
-            this.txtCVStartVoltage.Text = "0";
+            this.txtCVStartVoltage.Text = "-2";
+            this.txtCVStartVoltage.TextChanged += new System.EventHandler(this.txtCVStartVoltage_TextChanged);
             // 
             // groupBox2
             // 
@@ -451,7 +455,7 @@
             this.txtAveRate.Name = "txtAveRate";
             this.txtAveRate.Size = new System.Drawing.Size(81, 20);
             this.txtAveRate.TabIndex = 4;
-            this.txtAveRate.Text = "2";
+            this.txtAveRate.Text = "4";
             // 
             // label17
             // 
@@ -482,13 +486,13 @@
             this.rbInterLong.Name = "rbInterLong";
             this.rbInterLong.Size = new System.Drawing.Size(55, 17);
             this.rbInterLong.TabIndex = 2;
-            this.rbInterLong.TabStop = true;
             this.rbInterLong.Text = "LONG";
             this.rbInterLong.UseVisualStyleBackColor = true;
             // 
             // rbInterMedium
             // 
             this.rbInterMedium.AutoSize = true;
+            this.rbInterMedium.Checked = true;
             this.rbInterMedium.Location = new System.Drawing.Point(6, 44);
             this.rbInterMedium.Name = "rbInterMedium";
             this.rbInterMedium.Size = new System.Drawing.Size(69, 17);
@@ -496,16 +500,15 @@
             this.rbInterMedium.TabStop = true;
             this.rbInterMedium.Text = "MEDIUM";
             this.rbInterMedium.UseVisualStyleBackColor = true;
+            this.rbInterMedium.CheckedChanged += new System.EventHandler(this.rbInterMedium_CheckedChanged);
             // 
             // rbInterShort
             // 
             this.rbInterShort.AutoSize = true;
-            this.rbInterShort.Checked = true;
             this.rbInterShort.Location = new System.Drawing.Point(6, 22);
             this.rbInterShort.Name = "rbInterShort";
             this.rbInterShort.Size = new System.Drawing.Size(63, 17);
             this.rbInterShort.TabIndex = 0;
-            this.rbInterShort.TabStop = true;
             this.rbInterShort.Text = "SHORT";
             this.rbInterShort.UseVisualStyleBackColor = true;
             // 
@@ -1202,12 +1205,12 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label39.Location = new System.Drawing.Point(739, 975);
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label39.Location = new System.Drawing.Point(743, 975);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(24, 7);
+            this.label39.Size = new System.Drawing.Size(20, 7);
             this.label39.TabIndex = 77;
-            this.label39.Text = "CV0.1";
+            this.label39.Text = "CV0.2";
             // 
             // Form1
             // 

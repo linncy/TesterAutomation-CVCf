@@ -34,15 +34,15 @@ namespace lrcmeteer
             double q = 1.6E-19;
             for (i=0;i<lenRow;i++)
             {
-                dgvData.Rows[i].Cells[2].Value = epsilon0 * epsilonS * area_m2 / Convert.ToDouble(dataGridView.Rows[0].Cells[1].Value) * 1E06;
+                dgvData.Rows[i].Cells[2].Value = epsilon0 * epsilonS * area_m2 / Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value) * 1E06;
             }
-            for (i=1;i<lenRow;i++)
+            for (i=0;i<lenRow;i++)
             {
-                double c1 = Convert.ToDouble(dataGridView.Rows[i-1].Cells[1].Value);
-                double c2 = Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value);
-                double v1 = Convert.ToDouble(dataGridView.Rows[i - 1].Cells[0].Value);
-                double v2 = Convert.ToDouble(dataGridView.Rows[i].Cells[0].Value); 
-                dgvData.Rows[i].Cells[3].Value = ((v2 - v1) / (1 / (c2 * c2) - 1 / (c1 * c1))) * -2 / epsilon0 / epsilonS / area_m2 / area_m2 / q*10E-6;
+                double c1 = Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value);
+                double c2 = Convert.ToDouble(dataGridView.Rows[i+1].Cells[1].Value);
+                double v1 = Convert.ToDouble(dataGridView.Rows[i].Cells[0].Value);
+                double v2 = Convert.ToDouble(dataGridView.Rows[i+1].Cells[0].Value); 
+                dgvData.Rows[i].Cells[3].Value = (((v2 - v1) / (1 / (c2 * c2) - 1 / (c1 * c1))) * -2 / epsilon0 / epsilonS / area_m2 / area_m2 / q*10E-6).ToString("E4");
 
             }
             return true;

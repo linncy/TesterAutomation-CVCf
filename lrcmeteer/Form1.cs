@@ -93,10 +93,11 @@ namespace lrcmeteer
                     formattedIO.WriteLine(CommBias);
                     formattedIO.WriteLine("BIAS:VOLT?");
                     idnResponseBiasV = Convert.ToDouble(formattedIO.ReadLine());
-                    Shell.WriteLine("[Send]Send Command is {0}", CommBias);
-                    Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
+                    //Shell.WriteLine("[Send]Send Command is {0}", CommBias);
+                    //Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
 
                     //get the data
+                    System.Threading.Thread.Sleep(1);
                     FetchResult = sendCommand("Fetch?");
                     dtCV.Rows.Add((startvoltage + i * stepvoltage), Convert.ToDouble(FetchResult[0]));
                     listCVx.Add((startvoltage + i * stepvoltage));
@@ -194,8 +195,8 @@ namespace lrcmeteer
                         formattedIO.WriteLine("APER?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
                         string[] idnResponseAper = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]APERture setting is {0} integration time, Averaging rate is {1}", idnResponseAper[0], Convert.ToDouble(idnResponseAper[1]));
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]APERture setting is {0} integration time, Averaging rate is {1}", idnResponseAper[0], Convert.ToDouble(idnResponseAper[1]));
                         return normalreturn; 
                     case "Volt":
                         Comm = comm + " " + txtCVOscVoltage.Text + "mV";
@@ -205,15 +206,15 @@ namespace lrcmeteer
                         string[] idnResponseVolt = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
                         volt = Convert.ToDouble(idnResponseVolt[0]);
                         order = Convert.ToDouble(idnResponseVolt[1]);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
                         if (order >= 0)
                         {
-                            Shell.WriteLine("[Receive]Volt setting is {0} V", volt);
+                            //Shell.WriteLine("[Receive]Volt setting is {0} V", volt);
                         }
                         else
                         {
                             volt = volt * Math.Pow(10, order + 3);
-                            Shell.WriteLine("[Receive]Volt setting is {0} mV", volt);
+                            //Shell.WriteLine("[Receive]Volt setting is {0} mV", volt);
                         }
                         return normalreturn;
                     case "Freq":
@@ -224,11 +225,11 @@ namespace lrcmeteer
                         string[] idnResponseFreq = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
                         freq = Convert.ToDouble(idnResponseFreq[0]);
                         order = Convert.ToDouble(idnResponseFreq[1]);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
                         if (order >= 0 && order <= 5)
                         {
                             freq = freq * Math.Pow(10, order - 3);
-                            Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
+                            //Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
                         }
                         else
                         {
@@ -240,32 +241,32 @@ namespace lrcmeteer
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("Func:IMP?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
                         return normalreturn;
                     case "Func:IMP CSRS":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("Func:IMP?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
                         return normalreturn;
                     case "BIAS:STAT 1":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("BIAS:STAT?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
                         return normalreturn;
                     case "BIAS:STAT 0":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("BIAS:STAT?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
                         return normalreturn;
                     case "Fetch?":
                         string[] idnResponseFetch;
@@ -273,8 +274,8 @@ namespace lrcmeteer
                         formattedIO.WriteLine(Comm);
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
                         idnResponseFetch = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
                         return idnResponseFetch;
                 }
             }
@@ -515,6 +516,16 @@ namespace lrcmeteer
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             caculateCV(dtCV, dgvData);
+        }
+
+        private void txtCVStartVoltage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbInterMedium_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
