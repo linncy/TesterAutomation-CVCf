@@ -23,6 +23,10 @@ namespace lrcmeteer
         List<double> listCVx;
         List<double> listCVy;
         List<double> listCVy_2;
+        List<double> listCfx;
+        List<double> listCfx_2;
+        List<double> listCfy;
+        List<double> listCfy_2;
 
         //change widget state
         private void widgetStateChange(RunState type)
@@ -47,17 +51,14 @@ namespace lrcmeteer
             btnCVstart.Enabled = !state;
             btnCVstop.Enabled = state;
 
-            txtGMeasVoltage.Enabled = !state;
-            txtGOscVoltage.Enabled = !state;
-            txtGArea.Enabled = !state;
-            txtGTemper.Enabled = !state;
-            txtGkusai.Enabled = !state;
-            txtGBuiltIn.Enabled = !state;
-            txtGDepLayer.Enabled = !state;
-            txtGGAcomp.Enabled = !state;
-            txtGBGE.Enabled = !state;
-            btnGstart.Enabled = !state;
-            btnGstop.Enabled = state;
+            txtCfMeasVoltage.Enabled = !state;
+            txtCfOscVoltage.Enabled = !state;
+            txtCfArea.Enabled = !state;
+            txtStartLogf.Enabled = !state;
+            txtStopLogf.Enabled = !state;
+            txtStepLogf.Enabled = !state;
+            btnCfStart.Enabled = !state;
+            btnCfStop.Enabled = state;
         }
 
 
@@ -93,11 +94,10 @@ namespace lrcmeteer
                     formattedIO.WriteLine(CommBias);
                     formattedIO.WriteLine("BIAS:VOLT?");
                     idnResponseBiasV = Convert.ToDouble(formattedIO.ReadLine());
-                    //Shell.WriteLine("[Send]Send Command is {0}", CommBias);
-                    //Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
+                    Shell.WriteLine("[Send]Send Command is {0}", CommBias);
+                    Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
 
                     //get the data
-                    System.Threading.Thread.Sleep(1);
                     FetchResult = sendCommand("Fetch?");
                     dtCV.Rows.Add((startvoltage + i * stepvoltage), Convert.ToDouble(FetchResult[0]));
                     listCVx.Add((startvoltage + i * stepvoltage));
@@ -123,6 +123,65 @@ namespace lrcmeteer
                     widgetStateChange(state);
                     sendCommand("BIAS:STAT 0");
                     caculateCV(dtCV,dgvData);
+                    session.Dispose();
+                }
+
+            }
+        }
+        
+        private void RunCf(object sender, EventArgs e)
+        {
+            tmrCf.Enabled = false;
+            string CommFreq;
+            string strFreq;
+            string[] FetchResult;
+            double StartLogf, StepLogf, StopLogf, idnResponseBiasV;
+            StartLogf = Convert.ToDouble(txtStartLogf.Text);
+            StepLogf = Convert.ToDouble(txtStepLogf.Text);
+            StopLogf = Convert.ToDouble(txtStopLogf.Text);
+
+            //change bias voltage & draw the figure
+            if (state == RunState.running)
+            {
+                if (StartLogf + StepLogf * i <= StopLogf)
+                {
+                    //change frequency
+                    strFreq = Math.Pow(10, StartLogf + StepLogf * i).ToString("f4");
+                    CommFreq = "Freq" + " " + strFreq + "Hz";
+                    formattedIO.WriteLine(CommFreq);
+                    formattedIO.WriteLine("Freq?");
+                    idnResponseBiasV = Convert.ToDouble(formattedIO.ReadLine());
+                    Shell.WriteLine("[Send]Send Command is {0}", CommFreq);
+                    Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
+
+                    //get the data
+                    FetchResult = sendCommand("Fetch?");
+                    dtCF.Rows.Add(Math.Pow(10, StartLogf + StepLogf * i), StartLogf + StepLogf * i,Math.Log(2*Math.PI* Math.Pow(10, StartLogf + StepLogf * i)), Convert.ToDouble(FetchResult[0]));
+                    listCfx.Add(StartLogf + StepLogf * i);
+                    listCfy.Add(Convert.ToDouble(FetchResult[0]));
+                   // listCfx_2.Add(StartLogf + StepLogf * i);
+                  //  listCfy_2.Add(1 / (Convert.ToDouble(FetchResult[0]) * Convert.ToDouble(FetchResult[0])));
+                    plot(chartCV, "C-log(f)", listCVx, listCVy);
+
+                 //   plot(chartCV_2, "1/C²-V", listCVx, listCVy_2);
+                    //    logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
+
+                    //deal the data
+
+                    //plotx[i] = startvoltage + i * stepvoltage;
+                    //ploty[i] = Convert.ToDouble(FetchResult[0]);
+                    //Shell.WriteLine("[Output Data]{0},{1}", plotx[i], ploty[i]);
+                    i++;
+                    tmrCf.Enabled = true;
+                }
+                else
+                {
+                    i = 0;
+                    tmrCf.Enabled = false;
+                    state = RunState.stop;
+                    widgetStateChange(state);
+                    sendCommand("BIAS:STAT 0");
+                    caculateCV(dtCF, dgvData);
                     session.Dispose();
                 }
 
@@ -195,8 +254,8 @@ namespace lrcmeteer
                         formattedIO.WriteLine("APER?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
                         string[] idnResponseAper = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        //Shell.WriteLine("[Receive]APERture setting is {0} integration time, Averaging rate is {1}", idnResponseAper[0], Convert.ToDouble(idnResponseAper[1]));
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Receive]APERture setting is {0} integration time, Averaging rate is {1}", idnResponseAper[0], Convert.ToDouble(idnResponseAper[1]));
                         return normalreturn; 
                     case "Volt":
                         Comm = comm + " " + txtCVOscVoltage.Text + "mV";
@@ -206,15 +265,15 @@ namespace lrcmeteer
                         string[] idnResponseVolt = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
                         volt = Convert.ToDouble(idnResponseVolt[0]);
                         order = Convert.ToDouble(idnResponseVolt[1]);
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
                         if (order >= 0)
                         {
-                            //Shell.WriteLine("[Receive]Volt setting is {0} V", volt);
+                            Shell.WriteLine("[Receive]Volt setting is {0} V", volt);
                         }
                         else
                         {
                             volt = volt * Math.Pow(10, order + 3);
-                            //Shell.WriteLine("[Receive]Volt setting is {0} mV", volt);
+                            Shell.WriteLine("[Receive]Volt setting is {0} mV", volt);
                         }
                         return normalreturn;
                     case "Freq":
@@ -225,11 +284,11 @@ namespace lrcmeteer
                         string[] idnResponseFreq = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
                         freq = Convert.ToDouble(idnResponseFreq[0]);
                         order = Convert.ToDouble(idnResponseFreq[1]);
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
                         if (order >= 0 && order <= 5)
                         {
                             freq = freq * Math.Pow(10, order - 3);
-                            //Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
+                            Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
                         }
                         else
                         {
@@ -241,32 +300,32 @@ namespace lrcmeteer
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("Func:IMP?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        //Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
                         return normalreturn;
                     case "Func:IMP CSRS":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("Func:IMP?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        //Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
                         return normalreturn;
                     case "BIAS:STAT 1":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("BIAS:STAT?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        //Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
                         return normalreturn;
                     case "BIAS:STAT 0":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("BIAS:STAT?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        //Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
                         return normalreturn;
                     case "Fetch?":
                         string[] idnResponseFetch;
@@ -274,8 +333,8 @@ namespace lrcmeteer
                         formattedIO.WriteLine(Comm);
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
                         idnResponseFetch = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
-                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        //Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
+                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
                         return idnResponseFetch;
                 }
             }
@@ -290,7 +349,7 @@ namespace lrcmeteer
         private void btnCVstart_Click(object sender, EventArgs e)
         {
             dtCV = new DataTable();
-            dtCV.Columns.Add("V(V)", typeof(System.Double));
+            dtCV.Columns.Add("V(V)", typeof(float));
             dtCV.Columns.Add("C(F)", typeof(System.Double));
             dgvData.DataSource = dtCV;
             listCVx = new List<double>();
@@ -333,15 +392,51 @@ namespace lrcmeteer
             session.Dispose();
         }
 
-        private void btnGstart_Click(object sender, EventArgs e)
+        private void btnCfStart_Click(object sender, EventArgs e)
         {
-
+            string Comm;
+            dtCF = new DataTable();
+            dtCF.Columns.Add("f(Hz)", typeof(System.Double));
+            dtCF.Columns.Add("log f", typeof(float));
+            dtCF.Columns.Add("ln ω", typeof(System.Double));
+            dtCF.Columns.Add("C(F)", typeof(System.Double));
+            dgvData.DataSource = dtCF;
+            listCfx = new List<Double>();
+            listCfx_2 = new List<Double>();
+            listCfy = new List<Double>();
+            listCfy_2 = new List<Double>();
+            if(!openGPIB())
+            {
+                return;
+            }
+            sendCommand("APER");
+            //sendCommand("VOLT");
+            //sendCommand("Freq");
+            if(rbParallel.Checked==true)
+            {
+                sendCommand("Func:IMP CPG");      
+            }
+            else if(rbSeries.Checked==true)
+            {
+                sendCommand("Func:IMP CSRS");
+            }
+            sendCommand("BIAS:STAT 1");
+            tmrCf.Interval = Convert.ToInt32(txtCVSweepRate.Text);
+            //change bias voltage
+            Comm = "BIAS:VOLT " + Convert.ToString(txtCfMeasVoltage) + "V";
+            formattedIO.WriteLine(Comm);
+            Comm = "Volt" + " " + txtCfOscVoltage.Text + "mV";
+            formattedIO.WriteLine(Comm);
+            tmrCf.Tick += new EventHandler(RunCf);
+            tmrCf.Enabled = true;
+            state = RunState.running;
+            widgetStateChange(state);
         }
 
-        private void btnGstop_Click(object sender, EventArgs e)
+        private void btnCfStop_Click(object sender, EventArgs e)
         {
             i = 0;
-            tmrCV.Enabled = false;
+            tmrCf.Enabled = false;
             state = RunState.stop;
             widgetStateChange(state);
             sendCommand("BIAS:STAT 0");
@@ -353,11 +448,9 @@ namespace lrcmeteer
             this.Close();
         }
 
-        private void btnCalBandGap_Click(object sender, EventArgs e)
+        private void btnCfCalculate_Click(object sender, EventArgs e)
         {
-            double GaCom;
-            GaCom = Convert.ToDouble(txtGGAcomp.Text);
-            txtGBGE.Text = Convert.ToString(1+0.564*GaCom+0.116*GaCom*GaCom);
+            return;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -438,20 +531,24 @@ namespace lrcmeteer
 
         private void btnTest1_Click(object sender, EventArgs e)
         {
-            dtCV.Columns.Add("Voltage(V)" ,typeof(System.Double));
-            dtCV.Columns.Add("C(F)", typeof(System.Double));
-            dtCV.Rows.Add(-2, 2.14E-10);
-            dtCV.Rows.Add(-1.95, 2.13E-10);
-            dtCV.Rows.Add(-1.9, 2.23E-10);
-            dgvData.DataSource = dtCV;
-            Shell.WriteLine(Convert.ToString(dtCV.Rows.Count));
-           // DataGridViewTextBoxColumn c = new DataGridViewTextBoxColumn();
-           // c.DataPropertyName = "c";
-            //c.HeaderText = "c";
-           // c.Name = "ccolumn";
-           // string[] row = { "a", "b", "c" };
-            //dgvData.Columns.Add(c);
-           // dgvData.Rows.Add(row);
+            double[] res = new double[6];
+            res[0] = 2.14E-10; res[1] = 3.12E-10; res[2] = 4.52E-10; res[3] = 6.51E-10; res[4] = 8.12E-10; res[5] = 7.82E-10;
+            dtCF = new DataTable();
+            dtCF.Columns.Add("f(Hz)", typeof(System.Double));
+            dtCF.Columns.Add("log f", typeof(float));
+            dtCF.Columns.Add("ln ω", typeof(System.Double));
+            dtCF.Columns.Add("C(F)", typeof(System.Double));
+            dgvData.DataSource = dtCF;
+            listCfx = new List<Double>();
+            listCfx_2 = new List<Double>();
+            listCfy = new List<Double>();
+            listCfy_2 = new List<Double>();
+            double StartLogf = 1.4;
+            double StepLogf = 0.1;
+            for(i=0;i<6;i++)
+            {
+                dtCF.Rows.Add(Math.Pow(10, StartLogf + StepLogf * i), StartLogf + StepLogf * i, Math.Log(2 * Math.PI * Math.Pow(10, StartLogf + StepLogf * i)), Convert.ToDouble(res[i]));
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -464,11 +561,13 @@ namespace lrcmeteer
             listCVy_2 = new List<double>();
             plot(chartCV, "C-V", listCVx, listCVy);
             plot(chartCV_2, "1/C²-V", listCVx, listCVy_2);
+            plot(chartCf, "C-log(f)", listCVx, listCVy);
+            plot(chartCf_2, "dC-dln(ω)", listCVx, listCVy_2);
         }
 
         private void btnTest2_Click(object sender, EventArgs e)
         {
-            caculateCV(dtCV, dgvData);
+            caculateCf(dtCF, dgvData);
             List<double> listX = new List<double>();
             List<double> listY = new List<double>();
             for(i=0;i<40;i++)
@@ -476,7 +575,7 @@ namespace lrcmeteer
                 listX.Add(-1 + 0.05 * i);
                 listY.Add(2.14E-11 * i);
             }
-            plot(chartCV_2, "1/C²-V", listX, listY);
+            plot(chartCf_2, "1/C²-V", listX, listY);
             
         }
         private void plot(Chart chart, string tag, List<double> listx, List<double> listy)
@@ -524,6 +623,16 @@ namespace lrcmeteer
         }
 
         private void rbInterMedium_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

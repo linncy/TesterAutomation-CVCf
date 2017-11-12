@@ -35,6 +35,12 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnCVstop = new System.Windows.Forms.Button();
@@ -74,66 +80,37 @@
             this.rbSeries = new System.Windows.Forms.RadioButton();
             this.rbParallel = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.txtGBGE = new System.Windows.Forms.TextBox();
-            this.btnCalBandGap = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.btnGstop = new System.Windows.Forms.Button();
-            this.btnGstart = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.txtStepLogf = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.txtStopLogf = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.btnCfCalculate = new System.Windows.Forms.Button();
+            this.btnCfStop = new System.Windows.Forms.Button();
+            this.btnCfStart = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtGGAcomp = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtGDepLayer = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtGBuiltIn = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtGkusai = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtGTemper = new System.Windows.Forms.TextBox();
+            this.txtStartLogf = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.txtGArea = new System.Windows.Forms.TextBox();
+            this.txtCfArea = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.txtGOscVoltage = new System.Windows.Forms.TextBox();
+            this.txtCfOscVoltage = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.txtGMeasVoltage = new System.Windows.Forms.TextBox();
-            this.picboxCf = new System.Windows.Forms.PictureBox();
-            this.picboxGf = new System.Windows.Forms.PictureBox();
+            this.txtCfMeasVoltage = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
             this.tmrCV = new System.Windows.Forms.Timer(this.components);
-            this.tmrGf = new System.Windows.Forms.Timer(this.components);
+            this.tmrCf = new System.Windows.Forms.Timer(this.components);
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.btnTest1 = new System.Windows.Forms.Button();
+            this.btnTest2 = new System.Windows.Forms.Button();
             this.chartCV = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartCV_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label40 = new System.Windows.Forms.Label();
@@ -141,18 +118,22 @@
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label39 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.chartCf_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartCf = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxCf)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxGf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartCV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartCV_2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCf_2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,6 +172,7 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "C-V";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnCalculate
             // 
@@ -548,186 +530,146 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.label38);
-            this.groupBox5.Controls.Add(this.txtGBGE);
-            this.groupBox5.Controls.Add(this.btnCalBandGap);
-            this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.label36);
-            this.groupBox5.Controls.Add(this.label37);
-            this.groupBox5.Controls.Add(this.label35);
             this.groupBox5.Controls.Add(this.label23);
-            this.groupBox5.Controls.Add(this.label34);
-            this.groupBox5.Controls.Add(this.btnGstop);
-            this.groupBox5.Controls.Add(this.btnGstart);
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Controls.Add(this.label20);
+            this.groupBox5.Controls.Add(this.txtStepLogf);
+            this.groupBox5.Controls.Add(this.label28);
             this.groupBox5.Controls.Add(this.label21);
+            this.groupBox5.Controls.Add(this.txtStopLogf);
+            this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.label22);
+            this.groupBox5.Controls.Add(this.btnCfCalculate);
+            this.groupBox5.Controls.Add(this.btnCfStop);
+            this.groupBox5.Controls.Add(this.btnCfStart);
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label25);
-            this.groupBox5.Controls.Add(this.txtGGAcomp);
-            this.groupBox5.Controls.Add(this.label26);
-            this.groupBox5.Controls.Add(this.txtGDepLayer);
-            this.groupBox5.Controls.Add(this.label27);
-            this.groupBox5.Controls.Add(this.txtGBuiltIn);
-            this.groupBox5.Controls.Add(this.label28);
-            this.groupBox5.Controls.Add(this.txtGkusai);
-            this.groupBox5.Controls.Add(this.label29);
-            this.groupBox5.Controls.Add(this.txtGTemper);
+            this.groupBox5.Controls.Add(this.txtStartLogf);
             this.groupBox5.Controls.Add(this.label30);
-            this.groupBox5.Controls.Add(this.txtGArea);
+            this.groupBox5.Controls.Add(this.txtCfArea);
             this.groupBox5.Controls.Add(this.label31);
-            this.groupBox5.Controls.Add(this.txtGOscVoltage);
+            this.groupBox5.Controls.Add(this.txtCfOscVoltage);
             this.groupBox5.Controls.Add(this.label32);
             this.groupBox5.Controls.Add(this.label33);
-            this.groupBox5.Controls.Add(this.txtGMeasVoltage);
+            this.groupBox5.Controls.Add(this.txtCfMeasVoltage);
             this.groupBox5.Location = new System.Drawing.Point(12, 476);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(135, 506);
+            this.groupBox5.Size = new System.Drawing.Size(135, 434);
             this.groupBox5.TabIndex = 26;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "G/ω-ω";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(96, 412);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(20, 13);
-            this.label38.TabIndex = 34;
-            this.label38.Text = "eV";
-            // 
-            // txtGBGE
-            // 
-            this.txtGBGE.Enabled = false;
-            this.txtGBGE.Location = new System.Drawing.Point(9, 408);
-            this.txtGBGE.Name = "txtGBGE";
-            this.txtGBGE.Size = new System.Drawing.Size(81, 20);
-            this.txtGBGE.TabIndex = 33;
-            // 
-            // btnCalBandGap
-            // 
-            this.btnCalBandGap.Location = new System.Drawing.Point(9, 364);
-            this.btnCalBandGap.Name = "btnCalBandGap";
-            this.btnCalBandGap.Size = new System.Drawing.Size(81, 25);
-            this.btnCalBandGap.TabIndex = 31;
-            this.btnCalBandGap.Text = "calculate";
-            this.btnCalBandGap.UseVisualStyleBackColor = true;
-            this.btnCalBandGap.Click += new System.EventHandler(this.btnCalBandGap_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(7, 392);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(91, 13);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "Band Gap Energy";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label36.Location = new System.Drawing.Point(117, 209);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(12, 7);
-            this.label36.TabIndex = 30;
-            this.label36.Text = "-2";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(111, 211);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(13, 13);
-            this.label37.TabIndex = 29;
-            this.label37.Text = "k";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label35.Location = new System.Drawing.Point(102, 209);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(12, 7);
-            this.label35.TabIndex = 28;
-            this.label35.Text = "-1";
+            this.groupBox5.Text = "C-f";
+            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.Location = new System.Drawing.Point(108, 126);
+            this.label23.Location = new System.Drawing.Point(108, 249);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(12, 7);
-            this.label23.TabIndex = 27;
+            this.label23.TabIndex = 43;
             this.label23.Text = "-2";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(96, 127);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(21, 13);
-            this.label34.TabIndex = 26;
-            this.label34.Text = "cm";
-            // 
-            // btnGstop
-            // 
-            this.btnGstop.Enabled = false;
-            this.btnGstop.Location = new System.Drawing.Point(9, 469);
-            this.btnGstop.Name = "btnGstop";
-            this.btnGstop.Size = new System.Drawing.Size(81, 25);
-            this.btnGstop.TabIndex = 25;
-            this.btnGstop.Text = "stop";
-            this.btnGstop.UseVisualStyleBackColor = true;
-            this.btnGstop.Click += new System.EventHandler(this.btnGstop_Click);
-            // 
-            // btnGstart
-            // 
-            this.btnGstart.Location = new System.Drawing.Point(9, 438);
-            this.btnGstart.Name = "btnGstart";
-            this.btnGstart.Size = new System.Drawing.Size(81, 25);
-            this.btnGstart.TabIndex = 24;
-            this.btnGstart.Text = "start";
-            this.btnGstart.UseVisualStyleBackColor = true;
-            this.btnGstart.Click += new System.EventHandler(this.btnGstart_Click);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(96, 296);
+            this.label19.Location = new System.Drawing.Point(95, 252);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(21, 13);
-            this.label19.TabIndex = 22;
+            this.label19.TabIndex = 42;
             this.label19.Text = "cm";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(96, 254);
+            this.label20.Location = new System.Drawing.Point(9, 210);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(14, 13);
-            this.label20.TabIndex = 21;
-            this.label20.Text = "V";
+            this.label20.Size = new System.Drawing.Size(30, 13);
+            this.label20.TabIndex = 41;
+            this.label20.Text = "log(f)";
+            // 
+            // txtStepLogf
+            // 
+            this.txtStepLogf.Location = new System.Drawing.Point(39, 207);
+            this.txtStepLogf.Name = "txtStepLogf";
+            this.txtStepLogf.Size = new System.Drawing.Size(50, 20);
+            this.txtStepLogf.TabIndex = 40;
+            this.txtStepLogf.Text = "0.1";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 191);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(82, 13);
+            this.label28.TabIndex = 39;
+            this.label28.Text = "Frequency Step";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(96, 211);
+            this.label21.Location = new System.Drawing.Point(9, 168);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(12, 13);
-            this.label21.TabIndex = 20;
-            this.label21.Text = "s";
+            this.label21.Size = new System.Drawing.Size(30, 13);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "log(f)";
+            // 
+            // txtStopLogf
+            // 
+            this.txtStopLogf.Location = new System.Drawing.Point(40, 165);
+            this.txtStopLogf.Name = "txtStopLogf";
+            this.txtStopLogf.Size = new System.Drawing.Size(50, 20);
+            this.txtStopLogf.TabIndex = 37;
+            this.txtStopLogf.Text = "6.0";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(7, 149);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(82, 13);
+            this.label26.TabIndex = 36;
+            this.label26.Text = "Stop Frequency";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(96, 169);
+            this.label22.Location = new System.Drawing.Point(9, 126);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(14, 13);
-            this.label22.TabIndex = 19;
-            this.label22.Text = "K";
+            this.label22.Size = new System.Drawing.Size(30, 13);
+            this.label22.TabIndex = 35;
+            this.label22.Text = "log(f)";
+            // 
+            // btnCfCalculate
+            // 
+            this.btnCfCalculate.Location = new System.Drawing.Point(10, 285);
+            this.btnCfCalculate.Name = "btnCfCalculate";
+            this.btnCfCalculate.Size = new System.Drawing.Size(81, 25);
+            this.btnCfCalculate.TabIndex = 31;
+            this.btnCfCalculate.Text = "Calculate";
+            this.btnCfCalculate.UseVisualStyleBackColor = true;
+            this.btnCfCalculate.Click += new System.EventHandler(this.btnCfCalculate_Click);
+            // 
+            // btnCfStop
+            // 
+            this.btnCfStop.Enabled = false;
+            this.btnCfStop.Location = new System.Drawing.Point(10, 347);
+            this.btnCfStop.Name = "btnCfStop";
+            this.btnCfStop.Size = new System.Drawing.Size(81, 25);
+            this.btnCfStop.TabIndex = 25;
+            this.btnCfStop.Text = "Stop";
+            this.btnCfStop.UseVisualStyleBackColor = true;
+            this.btnCfStop.Click += new System.EventHandler(this.btnCfStop_Click);
+            // 
+            // btnCfStart
+            // 
+            this.btnCfStart.Location = new System.Drawing.Point(10, 316);
+            this.btnCfStart.Name = "btnCfStart";
+            this.btnCfStart.Size = new System.Drawing.Size(81, 25);
+            this.btnCfStart.TabIndex = 24;
+            this.btnCfStart.Text = "Start";
+            this.btnCfStart.UseVisualStyleBackColor = true;
+            this.btnCfStart.Click += new System.EventHandler(this.btnCfStart_Click);
             // 
             // label24
             // 
@@ -747,108 +689,47 @@
             this.label25.TabIndex = 16;
             this.label25.Text = "V";
             // 
-            // txtGGAcomp
+            // txtStartLogf
             // 
-            this.txtGGAcomp.Location = new System.Drawing.Point(9, 335);
-            this.txtGGAcomp.Name = "txtGGAcomp";
-            this.txtGGAcomp.Size = new System.Drawing.Size(81, 20);
-            this.txtGGAcomp.TabIndex = 15;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(7, 319);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(80, 13);
-            this.label26.TabIndex = 14;
-            this.label26.Text = "Ga composition";
-            // 
-            // txtGDepLayer
-            // 
-            this.txtGDepLayer.Location = new System.Drawing.Point(9, 293);
-            this.txtGDepLayer.Name = "txtGDepLayer";
-            this.txtGDepLayer.Size = new System.Drawing.Size(81, 20);
-            this.txtGDepLayer.TabIndex = 13;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(7, 276);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(81, 13);
-            this.label27.TabIndex = 12;
-            this.label27.Text = "Depletion Layer";
-            // 
-            // txtGBuiltIn
-            // 
-            this.txtGBuiltIn.Location = new System.Drawing.Point(9, 250);
-            this.txtGBuiltIn.Name = "txtGBuiltIn";
-            this.txtGBuiltIn.Size = new System.Drawing.Size(81, 20);
-            this.txtGBuiltIn.TabIndex = 11;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(7, 234);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(81, 13);
-            this.label28.TabIndex = 10;
-            this.label28.Text = "Built-in potential";
-            // 
-            // txtGkusai
-            // 
-            this.txtGkusai.Location = new System.Drawing.Point(9, 208);
-            this.txtGkusai.Name = "txtGkusai";
-            this.txtGkusai.Size = new System.Drawing.Size(81, 20);
-            this.txtGkusai.TabIndex = 9;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(7, 192);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(32, 13);
-            this.label29.TabIndex = 8;
-            this.label29.Text = "kusai";
-            // 
-            // txtGTemper
-            // 
-            this.txtGTemper.Location = new System.Drawing.Point(9, 166);
-            this.txtGTemper.Name = "txtGTemper";
-            this.txtGTemper.Size = new System.Drawing.Size(81, 20);
-            this.txtGTemper.TabIndex = 7;
+            this.txtStartLogf.Location = new System.Drawing.Point(40, 123);
+            this.txtStartLogf.Name = "txtStartLogf";
+            this.txtStartLogf.Size = new System.Drawing.Size(50, 20);
+            this.txtStartLogf.TabIndex = 7;
+            this.txtStartLogf.Text = "1.4";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(7, 150);
+            this.label30.Location = new System.Drawing.Point(7, 107);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(67, 13);
+            this.label30.Size = new System.Drawing.Size(82, 13);
             this.label30.TabIndex = 6;
-            this.label30.Text = "Temperature";
+            this.label30.Text = "Start Frequency";
             // 
-            // txtGArea
+            // txtCfArea
             // 
-            this.txtGArea.Location = new System.Drawing.Point(9, 124);
-            this.txtGArea.Name = "txtGArea";
-            this.txtGArea.Size = new System.Drawing.Size(81, 20);
-            this.txtGArea.TabIndex = 5;
+            this.txtCfArea.Location = new System.Drawing.Point(10, 249);
+            this.txtCfArea.Name = "txtCfArea";
+            this.txtCfArea.Size = new System.Drawing.Size(81, 20);
+            this.txtCfArea.TabIndex = 5;
+            this.txtCfArea.Text = "0.24";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(7, 107);
+            this.label31.Location = new System.Drawing.Point(6, 233);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(29, 13);
             this.label31.TabIndex = 4;
             this.label31.Text = "Area";
             // 
-            // txtGOscVoltage
+            // txtCfOscVoltage
             // 
-            this.txtGOscVoltage.Location = new System.Drawing.Point(9, 81);
-            this.txtGOscVoltage.Name = "txtGOscVoltage";
-            this.txtGOscVoltage.Size = new System.Drawing.Size(81, 20);
-            this.txtGOscVoltage.TabIndex = 3;
+            this.txtCfOscVoltage.Location = new System.Drawing.Point(9, 81);
+            this.txtCfOscVoltage.Name = "txtCfOscVoltage";
+            this.txtCfOscVoltage.Size = new System.Drawing.Size(81, 20);
+            this.txtCfOscVoltage.TabIndex = 3;
+            this.txtCfOscVoltage.Text = "25";
             // 
             // label32
             // 
@@ -864,35 +745,17 @@
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(7, 23);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(108, 13);
+            this.label33.Size = new System.Drawing.Size(110, 13);
             this.label33.TabIndex = 1;
-            this.label33.Text = "measurement voltage";
+            this.label33.Text = "Measurement Voltage";
             // 
-            // txtGMeasVoltage
+            // txtCfMeasVoltage
             // 
-            this.txtGMeasVoltage.Location = new System.Drawing.Point(9, 39);
-            this.txtGMeasVoltage.Name = "txtGMeasVoltage";
-            this.txtGMeasVoltage.Size = new System.Drawing.Size(81, 20);
-            this.txtGMeasVoltage.TabIndex = 0;
-            // 
-            // picboxCf
-            // 
-            this.picboxCf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picboxCf.Location = new System.Drawing.Point(182, 658);
-            this.picboxCf.Name = "picboxCf";
-            this.picboxCf.Size = new System.Drawing.Size(250, 271);
-            this.picboxCf.TabIndex = 27;
-            this.picboxCf.TabStop = false;
-            this.picboxCf.Click += new System.EventHandler(this.picboxCf_Click);
-            // 
-            // picboxGf
-            // 
-            this.picboxGf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picboxGf.Location = new System.Drawing.Point(486, 658);
-            this.picboxGf.Name = "picboxGf";
-            this.picboxGf.Size = new System.Drawing.Size(250, 271);
-            this.picboxGf.TabIndex = 28;
-            this.picboxGf.TabStop = false;
+            this.txtCfMeasVoltage.Location = new System.Drawing.Point(9, 39);
+            this.txtCfMeasVoltage.Name = "txtCfMeasVoltage";
+            this.txtCfMeasVoltage.Size = new System.Drawing.Size(81, 20);
+            this.txtCfMeasVoltage.TabIndex = 0;
+            this.txtCfMeasVoltage.Text = "1.0";
             // 
             // btnExit
             // 
@@ -904,175 +767,13 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(297, 932);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(25, 13);
-            this.label45.TabIndex = 38;
-            this.label45.Text = "10k";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(409, 932);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(22, 13);
-            this.label46.TabIndex = 37;
-            this.label46.Text = "1M";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(180, 932);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(25, 13);
-            this.label47.TabIndex = 36;
-            this.label47.Text = "100";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(240, 932);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(20, 13);
-            this.label51.TabIndex = 42;
-            this.label51.Text = "1K";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(355, 932);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(31, 13);
-            this.label52.TabIndex = 43;
-            this.label52.Text = "100k";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(659, 932);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(31, 13);
-            this.label48.TabIndex = 48;
-            this.label48.Text = "100k";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(544, 932);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(20, 13);
-            this.label49.TabIndex = 47;
-            this.label49.Text = "1K";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(601, 932);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(25, 13);
-            this.label50.TabIndex = 46;
-            this.label50.Text = "10k";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(713, 932);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(22, 13);
-            this.label53.TabIndex = 45;
-            this.label53.Text = "1M";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(484, 932);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(25, 13);
-            this.label54.TabIndex = 44;
-            this.label54.Text = "100";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(297, 951);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(26, 13);
-            this.label55.TabIndex = 49;
-            this.label55.Text = "[Hz]";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(601, 951);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(26, 13);
-            this.label56.TabIndex = 50;
-            this.label56.Text = "[Hz]";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(151, 916);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(13, 13);
-            this.label57.TabIndex = 51;
-            this.label57.Text = "0";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(151, 792);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(13, 13);
-            this.label58.TabIndex = 52;
-            this.label58.Text = "1";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(151, 658);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(13, 13);
-            this.label59.TabIndex = 53;
-            this.label59.Text = "2";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(457, 658);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(13, 13);
-            this.label60.TabIndex = 56;
-            this.label60.Text = "2";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(457, 792);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(13, 13);
-            this.label61.TabIndex = 55;
-            this.label61.Text = "1";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(457, 916);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(13, 13);
-            this.label62.TabIndex = 54;
-            this.label62.Text = "0";
-            // 
             // tmrCV
             // 
             this.tmrCV.Interval = 1000;
             // 
-            // tmrGf
+            // tmrCf
             // 
-            this.tmrGf.Tick += new System.EventHandler(this.tmrGf_Tick);
+            this.tmrCf.Tick += new System.EventHandler(this.tmrGf_Tick);
             // 
             // btnConnect
             // 
@@ -1107,11 +808,31 @@
             // dgvData
             // 
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Location = new System.Drawing.Point(181, 441);
+            this.dgvData.Location = new System.Drawing.Point(184, 441);
             this.dgvData.Name = "dgvData";
             this.dgvData.Size = new System.Drawing.Size(555, 211);
             this.dgvData.TabIndex = 66;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // btnTest1
+            // 
+            this.btnTest1.Location = new System.Drawing.Point(526, 43);
+            this.btnTest1.Name = "btnTest1";
+            this.btnTest1.Size = new System.Drawing.Size(75, 23);
+            this.btnTest1.TabIndex = 67;
+            this.btnTest1.Text = "Test1";
+            this.btnTest1.UseVisualStyleBackColor = true;
+            this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
+            // 
+            // btnTest2
+            // 
+            this.btnTest2.Location = new System.Drawing.Point(603, 43);
+            this.btnTest2.Name = "btnTest2";
+            this.btnTest2.Size = new System.Drawing.Size(75, 23);
+            this.btnTest2.TabIndex = 68;
+            this.btnTest2.Text = "Test2";
+            this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // chartCV
             // 
@@ -1174,7 +895,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(309, 420);
+            this.label42.Location = new System.Drawing.Point(309, 416);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(14, 13);
             this.label42.TabIndex = 74;
@@ -1183,7 +904,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(627, 420);
+            this.label43.Location = new System.Drawing.Point(632, 416);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(14, 13);
             this.label43.TabIndex = 75;
@@ -1192,32 +913,94 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(162, 151);
+            this.label44.Location = new System.Drawing.Point(176, 163);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(13, 13);
             this.label44.TabIndex = 76;
             this.label44.Text = "F";
             // 
-            // form1BindingSource
-            // 
-            this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
-            // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label39.Location = new System.Drawing.Point(743, 975);
+            this.label39.Location = new System.Drawing.Point(175, 688);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(20, 7);
-            this.label39.TabIndex = 77;
-            this.label39.Text = "CV0.2";
+            this.label39.Size = new System.Drawing.Size(13, 13);
+            this.label39.TabIndex = 83;
+            this.label39.Text = "F";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(485, 666);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(53, 13);
+            this.label47.TabIndex = 80;
+            this.label47.Text = "dC/dln(ω)";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(180, 667);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(40, 13);
+            this.label48.TabIndex = 79;
+            this.label48.Text = "C-log(f)";
+            // 
+            // chartCf_2
+            // 
+            this.chartCf_2.BackColor = System.Drawing.Color.Transparent;
+            this.chartCf_2.BackImageTransparentColor = System.Drawing.Color.Transparent;
+            chartArea3.Name = "ChartArea1";
+            this.chartCf_2.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chartCf_2.Legends.Add(legend3);
+            this.chartCf_2.Location = new System.Drawing.Point(483, 679);
+            this.chartCf_2.Name = "chartCf_2";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartCf_2.Series.Add(series3);
+            this.chartCf_2.Size = new System.Drawing.Size(280, 270);
+            this.chartCf_2.TabIndex = 78;
+            this.chartCf_2.Text = "chart1";
+            // 
+            // chartCf
+            // 
+            this.chartCf.BackColor = System.Drawing.Color.Transparent;
+            this.chartCf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            chartArea4.Name = "ChartArea1";
+            this.chartCf.ChartAreas.Add(chartArea4);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.chartCf.Legends.Add(legend4);
+            this.chartCf.Location = new System.Drawing.Point(179, 679);
+            this.chartCf.Name = "chartCf";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartCf.Series.Add(series4);
+            this.chartCf.Size = new System.Drawing.Size(280, 270);
+            this.chartCf.TabIndex = 77;
+            this.chartCf.Text = "C-V";
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 984);
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(774, 961);
             this.Controls.Add(this.label39);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.label48);
+            this.Controls.Add(this.chartCf_2);
+            this.Controls.Add(this.chartCf);
             this.Controls.Add(this.label44);
             this.Controls.Add(this.label43);
             this.Controls.Add(this.label42);
@@ -1225,31 +1008,13 @@
             this.Controls.Add(this.label40);
             this.Controls.Add(this.chartCV_2);
             this.Controls.Add(this.chartCV);
+            this.Controls.Add(this.btnTest2);
+            this.Controls.Add(this.btnTest1);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.label60);
-            this.Controls.Add(this.label61);
-            this.Controls.Add(this.label62);
-            this.Controls.Add(this.label59);
-            this.Controls.Add(this.label58);
-            this.Controls.Add(this.label57);
-            this.Controls.Add(this.label56);
-            this.Controls.Add(this.label55);
-            this.Controls.Add(this.label48);
-            this.Controls.Add(this.label49);
-            this.Controls.Add(this.label50);
-            this.Controls.Add(this.label53);
-            this.Controls.Add(this.label54);
-            this.Controls.Add(this.label52);
-            this.Controls.Add(this.label51);
-            this.Controls.Add(this.label45);
-            this.Controls.Add(this.label46);
-            this.Controls.Add(this.label47);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.picboxGf);
-            this.Controls.Add(this.picboxCf);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
@@ -1269,11 +1034,11 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxCf)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxGf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartCV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartCV_2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCf_2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1320,67 +1085,27 @@
         private System.Windows.Forms.RadioButton rbSeries;
         private System.Windows.Forms.RadioButton rbParallel;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox txtGBGE;
-        private System.Windows.Forms.Button btnCalBandGap;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Button btnGstop;
-        private System.Windows.Forms.Button btnGstart;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnCfCalculate;
+        private System.Windows.Forms.Button btnCfStop;
+        private System.Windows.Forms.Button btnCfStart;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtGGAcomp;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtGDepLayer;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox txtGBuiltIn;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox txtGkusai;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox txtGTemper;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtGArea;
+        private System.Windows.Forms.TextBox txtCfArea;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtGOscVoltage;
+        private System.Windows.Forms.TextBox txtCfOscVoltage;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox txtGMeasVoltage;
-        private System.Windows.Forms.PictureBox picboxCf;
-        private System.Windows.Forms.PictureBox picboxGf;
+        private System.Windows.Forms.TextBox txtCfMeasVoltage;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Timer tmrCV;
-        private System.Windows.Forms.Timer tmrGf;
+        private System.Windows.Forms.Timer tmrCf;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.Button btnTest1;
+        private System.Windows.Forms.Button btnTest2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCV;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCV_2;
         private System.Windows.Forms.Label label40;
@@ -1389,7 +1114,22 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtStepLogf;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtStopLogf;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtStartLogf;
+        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCf_2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCf;
+        private System.Windows.Forms.Label label23;
     }
 }
 
