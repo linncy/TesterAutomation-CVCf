@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data;
+using System.Collections;
 using Ivi.Visa;
 using Ivi.Visa.FormattedIO;
 using LogRecord;
@@ -27,6 +28,8 @@ namespace lrcmeteer
         List<double> listCfx_2;
         List<double> listCfy;
         List<double> listCfy_2;
+        Queue<double> doubleQ1;
+        Queue<double> doubleQ2;
 
         //change widget state
         private void widgetStateChange(RunState type)
@@ -94,10 +97,11 @@ namespace lrcmeteer
                     formattedIO.WriteLine(CommBias);
                     formattedIO.WriteLine("BIAS:VOLT?");
                     idnResponseBiasV = Convert.ToDouble(formattedIO.ReadLine());
-                    Shell.WriteLine("[Send]Send Command is {0}", CommBias);
-                    Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
+                    //Shell.WriteLine("[Send]Send Command is {0}", CommBias);
+                    //Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
 
                     //get the data
+                    System.Threading.Thread.Sleep(1);
                     FetchResult = sendCommand("Fetch?");
                     dtCV.Rows.Add((startvoltage + i * stepvoltage), Convert.ToDouble(FetchResult[0]));
                     listCVx.Add((startvoltage + i * stepvoltage));
@@ -135,7 +139,7 @@ namespace lrcmeteer
             string CommFreq;
             string strFreq;
             string[] FetchResult;
-            double StartLogf, StepLogf, StopLogf, idnResponseBiasV;
+            double StartLogf, StepLogf, StopLogf;
             StartLogf = Convert.ToDouble(txtStartLogf.Text);
             StepLogf = Convert.ToDouble(txtStepLogf.Text);
             StopLogf = Convert.ToDouble(txtStopLogf.Text);
@@ -149,28 +153,44 @@ namespace lrcmeteer
                     strFreq = Math.Pow(10, StartLogf + StepLogf * i).ToString("f4");
                     CommFreq = "Freq" + " " + strFreq + "Hz";
                     formattedIO.WriteLine(CommFreq);
-                    formattedIO.WriteLine("Freq?");
-                    idnResponseBiasV = Convert.ToDouble(formattedIO.ReadLine());
-                    Shell.WriteLine("[Send]Send Command is {0}", CommFreq);
-                    Shell.WriteLine("[Receive]BIAS Voltage is {0}V", idnResponseBiasV);
-
-                    //get the data
-                    FetchResult = sendCommand("Fetch?");
+                    //Shell.WriteLine("[Send]Send Command is {0}", CommFreq);
+                    //sendCommand("Freq");
+                    //System.Threading.Thread.Sleep(1);
+                    //formattedIO.WriteLine("Freq?");
+                    //System.Threading.Thread.Sleep(1);
+                    //idnResponse = formattedIO.ReadLine().Replace("\n", "");
+                    //string[] idnResponseFreq = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
+                    //freq = Convert.ToDouble(idnResponseFreq[0]);
+                    //order = Convert.ToDouble(idnResponseFreq[1]);
+                    //if (order >= 0 && order <= 5)
+                    //{
+                    //    freq = freq * Math.Pow(10, order - 3);
+                    //    //Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
+                    //}
+                    //else
+                    //{
+                    //    //Shell.WriteLine("[Receive]Frequency setting is {0} MHz", freq);
+                    //}
+                    System.Threading.Thread.Sleep(1);
+                    ////get the data
+                    if (StartLogf + StepLogf * i<=2)
+                    {
+                        FetchResult = sendCommand("Fetch?[Special]");
+                    }
+                    else
+                    {
+                        FetchResult = sendCommand("Fetch?[Special2]");
+                    }
                     dtCF.Rows.Add(Math.Pow(10, StartLogf + StepLogf * i), StartLogf + StepLogf * i,Math.Log(2*Math.PI* Math.Pow(10, StartLogf + StepLogf * i)), Convert.ToDouble(FetchResult[0]));
                     listCfx.Add(StartLogf + StepLogf * i);
                     listCfy.Add(Convert.ToDouble(FetchResult[0]));
-                   // listCfx_2.Add(StartLogf + StepLogf * i);
-                  //  listCfy_2.Add(1 / (Convert.ToDouble(FetchResult[0]) * Convert.ToDouble(FetchResult[0])));
-                    plot(chartCV, "C-log(f)", listCVx, listCVy);
-
-                 //   plot(chartCV_2, "1/C²-V", listCVx, listCVy_2);
-                    //    logfile.WriteLogFile(Convert.ToString(startvoltage + i * stepvoltage) + "," + FetchResult[0]);
-
-                    //deal the data
-
-                    //plotx[i] = startvoltage + i * stepvoltage;
-                    //ploty[i] = Convert.ToDouble(FetchResult[0]);
-                    //Shell.WriteLine("[Output Data]{0},{1}", plotx[i], ploty[i]);
+                    plot(chartCf, "C-log(f)", listCfx, listCfy);
+                    if(listCfx.Count>=2)
+                    {
+                        listCfx_2.Add(listCfx[i - 1]);
+                        listCfy_2.Add((listCfy[i] - listCfy[i - 1]) / (listCfx[i] - listCfx[i - 1]));
+                    }
+                    plot(chartCf_2, "dC-dlog(f)", listCfx_2, listCfy_2);
                     i++;
                     tmrCf.Enabled = true;
                 }
@@ -181,7 +201,7 @@ namespace lrcmeteer
                     state = RunState.stop;
                     widgetStateChange(state);
                     sendCommand("BIAS:STAT 0");
-                    caculateCV(dtCF, dgvData);
+                    caculateCf(dtCF, dgvData);
                     session.Dispose();
                 }
 
@@ -231,8 +251,8 @@ namespace lrcmeteer
             }
             catch (NativeVisaException visaException)
             {
-                Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
-                MessageBox.Show("Please check GPIB conncetion. GPIB port of the instrument should be set as GPIB0::25", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
+                MessageBox.Show("Please check GPIB conncetion. GPIB port of the instrument should be set as GPIB0::25", "Error: Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -254,8 +274,8 @@ namespace lrcmeteer
                         formattedIO.WriteLine("APER?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
                         string[] idnResponseAper = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]APERture setting is {0} integration time, Averaging rate is {1}", idnResponseAper[0], Convert.ToDouble(idnResponseAper[1]));
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]APERture setting is {0} integration time, Averaging rate is {1}", idnResponseAper[0], Convert.ToDouble(idnResponseAper[1]));
                         return normalreturn; 
                     case "Volt":
                         Comm = comm + " " + txtCVOscVoltage.Text + "mV";
@@ -265,15 +285,15 @@ namespace lrcmeteer
                         string[] idnResponseVolt = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
                         volt = Convert.ToDouble(idnResponseVolt[0]);
                         order = Convert.ToDouble(idnResponseVolt[1]);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
                         if (order >= 0)
                         {
-                            Shell.WriteLine("[Receive]Volt setting is {0} V", volt);
+                            //Shell.WriteLine("[Receive]Volt setting is {0} V", volt);
                         }
                         else
                         {
                             volt = volt * Math.Pow(10, order + 3);
-                            Shell.WriteLine("[Receive]Volt setting is {0} mV", volt);
+                            //Shell.WriteLine("[Receive]Volt setting is {0} mV", volt);
                         }
                         return normalreturn;
                     case "Freq":
@@ -284,15 +304,15 @@ namespace lrcmeteer
                         string[] idnResponseFreq = idnResponse.Split(new string[] { "E" }, StringSplitOptions.None);
                         freq = Convert.ToDouble(idnResponseFreq[0]);
                         order = Convert.ToDouble(idnResponseFreq[1]);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
                         if (order >= 0 && order <= 5)
                         {
                             freq = freq * Math.Pow(10, order - 3);
-                            Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
+                            //Shell.WriteLine("[Receive]Frequency setting is {0} KHz", freq);
                         }
                         else
                         {
-                            Shell.WriteLine("[Receive]Frequency setting is {0} MHz", freq);
+                            //Shell.WriteLine("[Receive]Frequency setting is {0} MHz", freq);
                         }
                         return normalreturn;
                     case "Func:IMP CPG":
@@ -300,32 +320,32 @@ namespace lrcmeteer
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("Func:IMP?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
                         return normalreturn;
                     case "Func:IMP CSRS":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("Func:IMP?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Function setting is {0}", idnResponse);
                         return normalreturn;
                     case "BIAS:STAT 1":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("BIAS:STAT?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
                         return normalreturn;
                     case "BIAS:STAT 0":
                         Comm = comm;
                         formattedIO.WriteLine(Comm);
                         formattedIO.WriteLine("BIAS:STAT?");
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]BIAS is {0}", (idnResponse == "0") ? "OFF" : "ON");
                         return normalreturn;
                     case "Fetch?":
                         string[] idnResponseFetch;
@@ -333,14 +353,50 @@ namespace lrcmeteer
                         formattedIO.WriteLine(Comm);
                         idnResponse = formattedIO.ReadLine().Replace("\n", "");
                         idnResponseFetch = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
-                        Shell.WriteLine("[Send]Send Command is {0}", Comm);
-                        Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
                         return idnResponseFetch;
+
+                    //Special Fetch
+                    case "Fetch?[Special]":
+                        string[] idnResponseFetchSpecial;
+                        Comm = "Fetch?";
+                        System.Threading.Thread.Sleep(1000);
+                        formattedIO.WriteLine(Comm);
+                        while(1==1)
+                        {
+                            try
+                            {
+                                System.Threading.Thread.Sleep(1000);
+                                idnResponse = formattedIO.ReadLine().Replace("\n", "");
+                                break;
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                        idnResponseFetchSpecial = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
+                        return idnResponseFetchSpecial;
+
+                    case "Fetch?[Special2]":
+                        string[] idnResponseFetchSpecial2;
+                        Comm = "Fetch?";
+                        System.Threading.Thread.Sleep(100);
+                        formattedIO.WriteLine(Comm);
+                        System.Threading.Thread.Sleep(100);
+                        idnResponse = formattedIO.ReadLine().Replace("\n", "");
+                        idnResponseFetchSpecial2 = idnResponse.Split(new string[] { "," }, StringSplitOptions.None);
+                        //Shell.WriteLine("[Send]Send Command is {0}", Comm);
+                        //Shell.WriteLine("[Receive]Measured result is {0}", idnResponse);
+                        return idnResponseFetchSpecial2;
                 }
             }
             catch (NativeVisaException visaException)
             {
-                Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
+                //Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
                 return null;
             }
             return null;
@@ -360,6 +416,12 @@ namespace lrcmeteer
             {
                 return;
             }
+            if (Convert.ToDouble(txtCVACfrequency.Text) < 0.02 || Convert.ToDouble(txtCVACfrequency.Text) > 1000)
+            {
+                MessageBox.Show("AC Frequency is out of range. The allowed range is 0.02 to 1000, namely 20Hz to 1Mhz.", "Error: Invalid Parameter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            i = 0;
             sendCommand("APER");
             sendCommand("Volt");
             sendCommand("Freq");
@@ -395,6 +457,8 @@ namespace lrcmeteer
         private void btnCfStart_Click(object sender, EventArgs e)
         {
             string Comm;
+            doubleQ1 = new Queue<double>();
+            doubleQ2 = new Queue<double>();
             dtCF = new DataTable();
             dtCF.Columns.Add("f(Hz)", typeof(System.Double));
             dtCF.Columns.Add("log f", typeof(float));
@@ -405,25 +469,36 @@ namespace lrcmeteer
             listCfx_2 = new List<Double>();
             listCfy = new List<Double>();
             listCfy_2 = new List<Double>();
-            if(!openGPIB())
+            if (!openGPIB())
             {
                 return;
             }
-            sendCommand("APER");
-            //sendCommand("VOLT");
-            //sendCommand("Freq");
-            if(rbParallel.Checked==true)
+            if (Convert.ToDouble(txtStartLogf.Text) < 1.29 || Convert.ToDouble(txtStartLogf.Text) > 6.01)
             {
-                sendCommand("Func:IMP CPG");      
+                MessageBox.Show("Start Frequency is out of range. The allowed range is 1.3 to 6.0, namely 20Hz to 1Mhz.", "Error: Invalid Parameter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            else if(rbSeries.Checked==true)
+            if (Convert.ToDouble(txtStopLogf.Text) < 1.29 || Convert.ToDouble(txtStopLogf.Text) > 6.01)
+            {
+                MessageBox.Show("Stop Frequency is out of range. The allowed range is 1.3 to 6.0, namely 20Hz to 1Mhz.", "Error: Invalid Parameter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            i = 0;
+            sendCommand("APER");
+            ////sendCommand("VOLT");
+            ////sendCommand("Freq");
+            if (rbParallel.Checked == true)
+            {
+                sendCommand("Func:IMP CPG");
+            }
+            else if (rbSeries.Checked == true)
             {
                 sendCommand("Func:IMP CSRS");
             }
             sendCommand("BIAS:STAT 1");
             tmrCf.Interval = Convert.ToInt32(txtCVSweepRate.Text);
-            //change bias voltage
-            Comm = "BIAS:VOLT " + Convert.ToString(txtCfMeasVoltage) + "V";
+            ////change bias voltage
+            Comm = "BIAS:VOLT " + txtCfMeasVoltage.Text + "V";
             formattedIO.WriteLine(Comm);
             Comm = "Volt" + " " + txtCfOscVoltage.Text + "mV";
             formattedIO.WriteLine(Comm);
@@ -450,7 +525,7 @@ namespace lrcmeteer
 
         private void btnCfCalculate_Click(object sender, EventArgs e)
         {
-            return;
+            caculateCf(dtCF, dgvData);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -462,15 +537,15 @@ namespace lrcmeteer
             }
             catch (NativeVisaException visaException)
             {
-                Shell.WriteLine("Error is:\r\n{0}\r\nPress any key to exit...", visaException);
                 return;
             }
 
             // Send the *IDN? and read the response as strings
             formattedIO.WriteLine("*IDN?");
-            Shell.WriteLine("[Send]Send Command is *IDN?");
+            System.Threading.Thread.Sleep(1);
+            //Shell.WriteLine("[Send]Send Command is *IDN?");
             string idnResponse = formattedIO.ReadLine();
-            Shell.WriteLine("[Receive]*IDN? returned: {0}", idnResponse);
+            //Shell.WriteLine("[Receive]*IDN? returned: {0}", idnResponse);
             session.Dispose();
         }
 
@@ -569,13 +644,21 @@ namespace lrcmeteer
         {
             caculateCf(dtCF, dgvData);
             List<double> listX = new List<double>();
+            List<double> listX_2 = new List<double>();
             List<double> listY = new List<double>();
-            for(i=0;i<40;i++)
+            List<double> listY_2 = new List<double>();
+            for (i=0;i<40;i++)
             {
                 listX.Add(-1 + 0.05 * i);
                 listY.Add(2.14E-11 * i);
+                if (listX.Count >= 2)
+                {
+                    listY_2.Add((listY[i] - listY[i - 1]) / (listX[i] - listX[i - 1]));
+                    listX_2.Add(listX[i-1]);
+                    plot(chartCf_2, "dC-dlog(f)", listX_2, listY_2);
+                }
+                
             }
-            plot(chartCf_2, "1/C²-V", listX, listY);
             
         }
         private void plot(Chart chart, string tag, List<double> listx, List<double> listy)
@@ -635,6 +718,11 @@ namespace lrcmeteer
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("C-V/C-f Sweep \nDeveloped for Agilent 4284A Precision LCR Meter\nVersion 1.0\nBuilt on 11/13/2017", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

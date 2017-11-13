@@ -20,14 +20,19 @@ namespace lrcmeteer
         static void Main()
         {
 #if DEBUG
-            AllocConsole();
-            Shell.WriteLine("注意：启动程序...");
+            //AllocConsole();
+            //Shell.WriteLine("注意：启动程序...");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            Shell.WriteLine("注意：2秒后关闭...");
-            Thread.Sleep(2000);
-            FreeConsole();
+            //Shell.WriteLine("注意：2秒后关闭...");
+           // Thread.Sleep(2000);
+            //FreeConsole();
+#endif
+#if Release
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
 #endif
         }
     }

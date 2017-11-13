@@ -34,7 +34,7 @@ namespace lrcmeteer
           //  double q = 1.6E-19;
             for (i = 0; i < lenRow; i++)
             {
-                dgvData.Rows[i].Cells[4].Value = Convert.ToDouble(dataGridView.Rows[i].Cells[3].Value) / area_cm2;
+                dgvData.Rows[i].Cells[4].Value = 10E9*Convert.ToDouble(dataGridView.Rows[i].Cells[3].Value) / area_cm2;
             }
             for (i = 0; i < lenRow-1; i++)
             {

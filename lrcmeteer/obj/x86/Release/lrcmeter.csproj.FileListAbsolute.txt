@@ -1,0 +1,11 @@
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\x86\Release\lrcmeteer.exe.config
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\x86\Release\lrcmeteer.Form1.resources
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\x86\Release\lrcmeteer.Properties.Resources.resources
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\x86\Release\lrcmeter.csproj.GenerateResource.Cache
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\x86\Release\lrcmeteer.exe
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\x86\Release\lrcmeteer.pdb
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\x86\Release\Ivi.Visa.dll
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\x86\Release\Ivi.Visa.xml
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\x86\Release\lrcmeter.csprojResolveAssemblyReference.cache
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\x86\Release\lrcmeteer.exe
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\x86\Release\lrcmeteer.pdb

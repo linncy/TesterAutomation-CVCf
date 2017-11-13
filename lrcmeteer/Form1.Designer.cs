@@ -124,6 +124,7 @@
             this.chartCf_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartCf = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -755,7 +756,7 @@
             this.txtCfMeasVoltage.Name = "txtCfMeasVoltage";
             this.txtCfMeasVoltage.Size = new System.Drawing.Size(81, 20);
             this.txtCfMeasVoltage.TabIndex = 0;
-            this.txtCfMeasVoltage.Text = "1.0";
+            this.txtCfMeasVoltage.Text = "0";
             // 
             // btnExit
             // 
@@ -988,6 +989,17 @@
             // 
             this.form1BindingSource.DataSource = typeof(lrcmeteer.Form1);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(751, 945);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(12, 7);
+            this.label18.TabIndex = 84;
+            this.label18.Text = "1.0";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -996,6 +1008,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(774, 961);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.label47);
             this.Controls.Add(this.label48);
@@ -1130,6 +1143,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCf_2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCf;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label18;
     }
 }
 

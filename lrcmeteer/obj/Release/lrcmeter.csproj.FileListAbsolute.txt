@@ -9,3 +9,13 @@ E:\Projects\lrcmeteer\lrcmeteer\obj\Release\lrcmeteer.Properties.Resources.resou
 E:\Projects\lrcmeteer\lrcmeteer\obj\Release\lrcmeter.csproj.GenerateResource.Cache
 E:\Projects\lrcmeteer\lrcmeteer\obj\Release\lrcmeteer.exe
 E:\Projects\lrcmeteer\lrcmeteer\obj\Release\lrcmeteer.pdb
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\Release\lrcmeteer.exe.config
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\Release\lrcmeteer.exe
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\Release\lrcmeteer.pdb
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\Release\lrcmeteer.exe
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\Release\lrcmeteer.pdb
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\bin\Release\Ivi.Visa.xml
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\Release\lrcmeter.csprojResolveAssemblyReference.cache
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\Release\lrcmeteer.Form1.resources
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\Release\lrcmeteer.Properties.Resources.resources
+C:\Users\Lin\Desktop\Project\CVCf\lrcmeteer\obj\Release\lrcmeter.csproj.GenerateResource.Cache
