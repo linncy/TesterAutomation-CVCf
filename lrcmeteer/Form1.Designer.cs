@@ -823,6 +823,7 @@
             this.btnTest1.TabIndex = 67;
             this.btnTest1.Text = "Test1";
             this.btnTest1.UseVisualStyleBackColor = true;
+            this.btnTest1.Visible = false;
             this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
             // 
             // btnTest2
@@ -833,6 +834,7 @@
             this.btnTest2.TabIndex = 68;
             this.btnTest2.Text = "Test2";
             this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Visible = false;
             this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // chartCV

@@ -34,7 +34,7 @@ namespace lrcmeteer
           //  double q = 1.6E-19;
             for (i = 0; i < lenRow; i++)
             {
-                dgvData.Rows[i].Cells[4].Value = 10E9*Convert.ToDouble(dataGridView.Rows[i].Cells[3].Value) / area_cm2;
+                dgvData.Rows[i].Cells[5].Value = 10E9*Convert.ToDouble(dataGridView.Rows[i].Cells[3].Value) / area_cm2;
             }
             for (i = 0; i < lenRow-1; i++)
             {
@@ -42,7 +42,7 @@ namespace lrcmeteer
                 double c2 = Convert.ToDouble(dataGridView.Rows[i+1].Cells[3].Value);
                 double lnw1 = Convert.ToDouble(dataGridView.Rows[i].Cells[2].Value);
                 double lnw2 = Convert.ToDouble(dataGridView.Rows[i+1].Cells[2].Value);
-                dgvData.Rows[i].Cells[5].Value = (c2 - c1) / (lnw2 - lnw1);
+                dgvData.Rows[i].Cells[6].Value = (c2 - c1) / (lnw2 - lnw1);
             }
             return true;
         }

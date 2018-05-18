@@ -181,7 +181,7 @@ namespace lrcmeteer
                     {
                         FetchResult = sendCommand("Fetch?[Special2]");
                     }
-                    dtCF.Rows.Add(Math.Pow(10, StartLogf + StepLogf * i), StartLogf + StepLogf * i,Math.Log(2*Math.PI* Math.Pow(10, StartLogf + StepLogf * i)), Convert.ToDouble(FetchResult[0]));
+                    dtCF.Rows.Add(Math.Pow(10, StartLogf + StepLogf * i), StartLogf + StepLogf * i,Math.Log(2*Math.PI* Math.Pow(10, StartLogf + StepLogf * i)), Convert.ToDouble(FetchResult[0]), Convert.ToDouble(FetchResult[1]));
                     listCfx.Add(StartLogf + StepLogf * i);
                     listCfy.Add(Convert.ToDouble(FetchResult[0]));
                     plot(chartCf, "C-log(f)", listCfx, listCfy);
@@ -464,6 +464,7 @@ namespace lrcmeteer
             dtCF.Columns.Add("log f", typeof(float));
             dtCF.Columns.Add("ln ω", typeof(System.Double));
             dtCF.Columns.Add("C(F)", typeof(System.Double));
+            dtCF.Columns.Add("G(S)", typeof(System.Double));
             dgvData.DataSource = dtCF;
             listCfx = new List<Double>();
             listCfx_2 = new List<Double>();
