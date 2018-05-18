@@ -24,6 +24,7 @@ namespace lrcmeteer
             }
             if (!(datatable.Columns.Contains("w(μm)") || datatable.Columns.Contains("NA(cm-3)")))
             {
+                datatable.Columns.Add("1/C^2(F-2)", typeof(System.Double));
                 datatable.Columns.Add("w(μm)", typeof(System.Double));
                 datatable.Columns.Add("NA(cm-3)", typeof(System.Double));
             }
@@ -34,7 +35,8 @@ namespace lrcmeteer
             double q = 1.6E-19;
             for (i=0;i<lenRow;i++)
             {
-                dgvData.Rows[i].Cells[2].Value = epsilon0 * epsilonS * area_m2 / Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value) * 1E06;
+                dgvData.Rows[i].Cells[2].Value = 1.0 / Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value) / Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value);
+                dgvData.Rows[i].Cells[3].Value = epsilon0 * epsilonS * area_m2 / Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value) * 1E06;
             }
             for (i=1;i<lenRow;i++)
             {
@@ -42,7 +44,7 @@ namespace lrcmeteer
                 double c2 = Convert.ToDouble(dataGridView.Rows[i].Cells[1].Value);
                 double v1 = Convert.ToDouble(dataGridView.Rows[i - 1].Cells[0].Value);
                 double v2 = Convert.ToDouble(dataGridView.Rows[i].Cells[0].Value); 
-                dgvData.Rows[i].Cells[3].Value = (((v2 - v1) / (1 / (c2 * c2) - 1 / (c1 * c1))) * -2 / epsilon0 / epsilonS / area_m2 / area_m2 / q*10E-6).ToString("E4");
+                dgvData.Rows[i].Cells[4].Value = (((v2 - v1) / (1 / (c2 * c2) - 1 / (c1 * c1))) * -2 / epsilon0 / epsilonS / area_m2 / area_m2 / q*10E-6).ToString("E4");
 
             }
             return true;
