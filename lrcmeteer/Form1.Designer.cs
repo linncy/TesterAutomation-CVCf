@@ -999,7 +999,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(12, 7);
             this.label18.TabIndex = 84;
-            this.label18.Text = "1.0";
+            this.label18.Text = "1.1";
             this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // Form1

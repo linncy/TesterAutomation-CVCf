@@ -173,7 +173,7 @@ namespace lrcmeteer
                     //}
                     System.Threading.Thread.Sleep(1);
                     ////get the data
-                    if (StartLogf + StepLogf * i<=2)
+                    if (StartLogf + StepLogf * i<3)
                     {
                         FetchResult = sendCommand("Fetch?[Special]");
                     }
@@ -723,7 +723,7 @@ namespace lrcmeteer
 
         private void label18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("C-V/C-f Sweep \nDeveloped for Agilent 4284A Precision LCR Meter\nVersion 1.0\nBuilt on 11/13/2017", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("C-V/C-f Sweep \nDeveloped for Agilent 4284A Precision LCR Meter\nVersion 1.1\nBuilt on 05/21/2018", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
